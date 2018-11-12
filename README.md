@@ -1,6 +1,5 @@
 # KEEP-CLONE
 
-#### By Nityananda Gohain
 
 ### Steps to run
 

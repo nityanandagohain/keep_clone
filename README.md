@@ -1,5 +1,5 @@
 # KEEP-CLONE
-
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/keep-clone/Lobby)
 
 ### Steps to run
 
@@ -14,3 +14,9 @@
 * `npm install`
 
 * `npm start`
+
+### Contributions 
+
+* Contributors are welcome and please comment on the issue before working on it.
+
+gitter Channel : https://gitter.im/keep-clone/Lobby

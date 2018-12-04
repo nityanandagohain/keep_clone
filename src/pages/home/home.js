@@ -71,7 +71,6 @@ export default class Home extends Component {
                         }
                     </div>
                 </div>
-
                 <button onClick={this.logOut} type="submit" className="btn btn-primary">LogOut</button>
             </div>
         );

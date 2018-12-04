@@ -34,4 +34,6 @@
 
 * Contributors are welcome and please comment on the issue before working on it.
 
+* Please note: Dont commit your config.json file
+
 gitter Channel : https://gitter.im/keep-clone/Lobby

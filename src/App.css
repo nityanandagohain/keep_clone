@@ -1,3 +1,7 @@
+body {
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
 .App {
   text-align: center;
 }
@@ -30,3 +34,31 @@
     transform: rotate(360deg);
   }
 }
+
+/*For Login Page*/
+
+.container {
+  background: 
+  linear-gradient(135deg, black 50%, transparent 25%) -30px 0,
+  linear-gradient(225deg, black 25%, transparent 25%) -30px 0,
+  linear-gradient(315deg, black 25%, transparent 25%),
+  linear-gradient(45deg, black 25%, transparent 25%); 
+  background-size: 1em 1em;
+  background-color: #232323;
+  margin: 10% auto;
+  padding: 30px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.1);
+  border: solid white 2px;
+}
+
+
+.btn-primary {
+  margin:0 5px;
+}
+
+.form-head {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: white;
+  padding-bottom: 20px;
+}
+

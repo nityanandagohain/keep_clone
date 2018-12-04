@@ -13,16 +13,19 @@
 
 * Go to authentication and click on sign-in method and enable "Email/password"
 
-* Go to Database and create database on cloud firestore and Enable test mode.
+* Go to Database and create database on Realtime Database and Enable test mode.
 
 
 ### Installing depencencies and running the app
 
-* Install create-react-app
-  `npm install -g create-react-app`
+* Fork the repository
 
 * Clone the repository 
-  `git clone https://nityanandagohain@bitbucket.org/nityanandagohain/keep-clone.git`
+  `git clone https://github.com/<username>/keep_clone.git`
+  where \< username \> is your username
+
+* Install create-react-app
+  `npm install -g create-react-app`
 
 * `cd keep-clone`
 

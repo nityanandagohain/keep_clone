@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../../config/fire';
-<<<<<<< HEAD
 import './login.css'
-=======
 import Loader from '../loader/loader';
->>>>>>> 7e72333a0484d4961d2d0a8575da9d43c85cfea6
-
 export default class Login extends Component {
     constructor(props) {
         super(props);

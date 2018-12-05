@@ -1,24 +1,35 @@
 import React, { Component } from 'react';
 import fire from '../../config/fire';
+import Loader from '../loader/loader';
 
 export default class Login extends Component {
-
-
     constructor(props) {
         super(props);
         //binding the function
         this.login = this.login.bind(this);
         this.signup = this.signup.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
+        this.showLoader = this.showLoader.bind(this);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            loading: false,
         }
+    }
+
+    showLoader() {
+        this.setState({
+            loading: true
+        });
+        console.log(this.state.loading);
     }
 
     async login(e) {
         e.preventDefault();
+
+        //Display the loader
+        this.showLoader();
+
         try {
             let user = await fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
             console.log(`successfully Signed In ${user}`);
@@ -29,6 +40,10 @@ export default class Login extends Component {
 
     async signup(e) {
         e.preventDefault();
+
+        //Display the loader
+        this.showLoader();
+
         try {
             let user = await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
             console.log(`successfully Signed Up ${user}`);
@@ -43,6 +58,7 @@ export default class Login extends Component {
 
     render() {
         return (
+
             <div class="col-md-6 container">
             <h1 class="form-head">Let's Get Started!!!</h1>
                 <form id="Login">

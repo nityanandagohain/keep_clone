@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import fire from '../../config/fire';
+import './login.css'
 
 export default class Login extends Component {
 
@@ -41,10 +42,18 @@ export default class Login extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+componentDidMount() {
+    document.body.classList.add("background-white");
+}
+
+componentWillUnmount() {
+    document.body.classList.remove("background-white");
+}
     render() {
         return (
-            <div class="col-md-6 container">
-            <h1 class="form-head">Let's Get Started!!!</h1>
+            
+            <div className="col-md-6 container box">
+            <h1 class="form-head">KEEP CLONE</h1>
                 <form id="Login">
                     <div className="form-group">
                         <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className="form-control" id="inputEmail" placeholder="Email Address" />
@@ -56,6 +65,9 @@ export default class Login extends Component {
                     <button onClick={this.signup} type="submit" className="btn btn-primary ">Sign Up</button>
                 </form>
             </div>
+            
         );
     }
+
+
 }

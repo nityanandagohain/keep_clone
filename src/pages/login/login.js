@@ -65,20 +65,22 @@ componentWillUnmount() {
 }
     render() {
         return (
-            <div className="col-md-6 container box">
-            <h1 class="form-head">KEEP CLONE</h1>
-                <form id="Login">
-                    <div className="form-group">
-                        <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className="form-control" id="inputEmail" placeholder="Email Address" />
+            this.state.loading ?
+                <Loader />
+                :
+                    <div className="col-md-6 container box">
+                    <h1 class="form-head">KEEP CLONE</h1>
+                        <form id="Login">
+                            <div className="form-group">
+                                <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className="form-control" id="inputEmail" placeholder="Email Address" />
+                            </div>
+                            <div className="form-group">
+                                <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" placeholder="Password" />
+                            </div>
+                            <button onClick={this.login} type="submit" className="btn btn-secondary " >Login</button>
+                            <button onClick={this.signup} type="submit" className="btn btn-primary ">Sign Up</button>
+                        </form>
                     </div>
-                    <div className="form-group">
-                        <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" placeholder="Password" />
-                    </div>
-                    <button onClick={this.login} type="submit" className="btn btn-secondary " >Login</button>
-                    <button onClick={this.signup} type="submit" className="btn btn-primary ">Sign Up</button>
-                </form>
-            </div>
-            
         );
     }
 

@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
 import fire from '../../config/fire';
+<<<<<<< HEAD
 import './login.css'
+=======
+import Loader from '../loader/loader';
+>>>>>>> 7e72333a0484d4961d2d0a8575da9d43c85cfea6
 
 export default class Login extends Component {
-
-
     constructor(props) {
         super(props);
         //binding the function
         this.login = this.login.bind(this);
         this.signup = this.signup.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
+        this.showLoader = this.showLoader.bind(this);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            loading: false,
         }
+    }
+
+    showLoader() {
+        this.setState({
+            loading: true
+        });
+        console.log(this.state.loading);
     }
 
     async login(e) {
         e.preventDefault();
+
+        //Display the loader
+        this.showLoader();
+
         try {
             let user = await fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
             console.log(`successfully Signed In ${user}`);
@@ -30,6 +44,10 @@ export default class Login extends Component {
 
     async signup(e) {
         e.preventDefault();
+
+        //Display the loader
+        this.showLoader();
+
         try {
             let user = await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
             console.log(`successfully Signed Up ${user}`);
@@ -51,7 +69,6 @@ componentWillUnmount() {
 }
     render() {
         return (
-            
             <div className="col-md-6 container box">
             <h1 class="form-head">KEEP CLONE</h1>
                 <form id="Login">

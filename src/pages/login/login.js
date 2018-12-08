@@ -3,8 +3,6 @@ import fire, {provider } from '../../config/fire';
 import './login.css'
 import Loader from '../loader/loader';
 
-
-
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -77,7 +75,6 @@ export default class Login extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    
 componentDidMount() {
     document.body.classList.add("background-white");
 }

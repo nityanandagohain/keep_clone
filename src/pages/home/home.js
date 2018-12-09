@@ -41,8 +41,13 @@ export default class Home extends Component {
     async logOut(e) {
         e.preventDefault();
         try {
-            await fire.auth().signOut();
-            console.log("Signot Successfull");
+            await fire.auth().signOut()
+            .then(() => {
+              this.setState({
+                user: null
+              });
+            });
+            console.log("Signot Successful");
         } catch (err) {
             console.log(err);
         }

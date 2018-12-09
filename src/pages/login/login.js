@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import fire from '../../config/fire';
+import fire, {provider } from '../../config/fire';
 import './login.css'
 import Loader from '../loader/loader';
+
 export default class Login extends Component {
     constructor(props) {
         super(props);
         //binding the function
         this.login = this.login.bind(this);
         this.signup = this.signup.bind(this);
+        this.loginGoogle = this.loginGoogle.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.showLoader = this.showLoader.bind(this);
         this.state = {
@@ -52,6 +54,23 @@ export default class Login extends Component {
         }
     }
 
+    async loginGoogle(e) {
+        e.preventDefault();
+        try {
+            let user = await fire.auth().signInWithPopup(provider) 
+                .then((result) => {
+                  const user = result.user;
+                  this.setState({
+                    user
+                  });
+                });
+        } catch (err) {
+            console.log(err);
+        }
+
+      
+    }
+
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
@@ -77,8 +96,9 @@ componentWillUnmount() {
                             <div className="form-group">
                                 <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" placeholder="Password" />
                             </div>
-                            <button onClick={this.login} type="submit" className="btn btn-secondary " >Login</button>
-                            <button onClick={this.signup} type="submit" className="btn btn-primary ">Sign Up</button>
+                            <button onClick={this.login} type="submit" className="btn btn-success " >Login</button>
+                            <button onClick={this.signup} type="submit" className="btn btn-primary">Sign Up</button>
+                            <button onClick={this.loginGoogle} type="submit" className="btn btn-danger">Sign In with Google</button>
                         </form>
                     </div>
         );

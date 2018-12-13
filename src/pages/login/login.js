@@ -28,7 +28,6 @@ export default class Login extends Component {
 
     async login(e) {
         e.preventDefault();
-
         //Display the loader
         this.showLoader();
 
@@ -42,13 +41,29 @@ export default class Login extends Component {
 
     async signup(e) {
         e.preventDefault();
-
         //Display the loader
         this.showLoader();
 
         try {
             let user = await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-            console.log(`successfully Signed Up ${user}`);
+            console.log(`Successfully Signed Up ${user}`);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async loginGoogle(e) {
+        e.preventDefault();
+        
+        try {
+            let user = await fire.auth().signInWithPopup(provider) 
+                .then((result) => {
+                  const user = result.user;
+                  this.setState({
+                    user
+                  });
+                  console.log(`Successfully Signed In using Google${user}`);
+                });
         } catch (err) {
             console.log(err);
         }
@@ -103,6 +118,4 @@ componentWillUnmount() {
                     </div>
         );
     }
-
-
 }

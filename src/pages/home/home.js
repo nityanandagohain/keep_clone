@@ -6,13 +6,14 @@ import NoteForm from '../noteForm/noteForm';
 export default class Home extends Component {
     constructor(props) {
         super(props);
+        this.uid = props.uid; 
         this.logOut = this.logOut.bind(this);
         this.addNote = this.addNote.bind(this);
         this.removeNote = this.removeNote.bind(this);
         this.state = {
             notes: [],
         }
-        this.db = fire.database().ref().child('notes');
+        this.db = fire.database().ref(this.uid).child('notes');
     }
 
     componentWillMount() {
@@ -20,7 +21,7 @@ export default class Home extends Component {
         this.db.on('child_added', snap => {
             console.log(snap);
             this.setState({
-                notes: this.state.notes.concat({ id: snap.key, noteTitle: snap.val().noteTitle, noteData: snap.val().noteData })
+                notes: this.state.notes.concat({id: snap.key, noteTitle: snap.val().noteTitle, noteData: snap.val().noteData })
             })
         })
 
@@ -53,9 +54,9 @@ export default class Home extends Component {
         }
     }
 
-    addNote(title, data) {
+    addNote(title,data) {
         //Push the new note to the realtime database
-        this.db.push().set({ noteTitle: title, noteData: data });
+        this.db.push().set({noteTitle: title, noteData: data });
     }
 
     removeNote(noteId) {
@@ -70,6 +71,7 @@ export default class Home extends Component {
                         {
                             this.state.notes.map((note) => {
                                 return (
+
                                     <Note key={note.id} noteTitle={note.noteTitle} noteData={note.noteData} noteId={note.id} removeNote={this.removeNote} />
                                 );
                             })

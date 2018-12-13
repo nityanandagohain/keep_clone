@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Note extends Component {
     constructor(props) {
-        super(props);
+        super(props); 
         this.noteTitle = props.noteTitle;
         this.noteData = props.noteData;
         this.noteId = props.noteId;
@@ -20,7 +20,7 @@ export default class Note extends Component {
                     <p className="card-text">{this.noteData}</p>
                     <button onClick={()=> this.handleRemoveNote(this.noteId)} type="submit" className="btn btn-primary">&times;</button>
                 </div>
-            </div>
+            </div> 
         );
     }
 }

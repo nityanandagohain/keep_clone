@@ -3,8 +3,6 @@ import fire, {provider } from '../../config/fire';
 import './login.css'
 import Loader from '../loader/loader';
 
-
-
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +28,6 @@ export default class Login extends Component {
 
     async login(e) {
         e.preventDefault();
-
         //Display the loader
         this.showLoader();
 
@@ -44,13 +41,12 @@ export default class Login extends Component {
 
     async signup(e) {
         e.preventDefault();
-
         //Display the loader
         this.showLoader();
 
         try {
             let user = await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-            console.log(`successfully Signed Up ${user}`);
+            console.log(`Successfully Signed Up ${user}`);
         } catch (err) {
             console.log(err);
         }
@@ -58,6 +54,7 @@ export default class Login extends Component {
 
     async loginGoogle(e) {
         e.preventDefault();
+        
         try {
             let user = await fire.auth().signInWithPopup(provider) 
                 .then((result) => {
@@ -65,19 +62,17 @@ export default class Login extends Component {
                   this.setState({
                     user
                   });
+                  console.log(`Successfully Signed In using Google${user}`);
                 });
         } catch (err) {
             console.log(err);
         }
-
-      
     }
 
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    
 componentDidMount() {
     document.body.classList.add("background-white");
 }
@@ -106,6 +101,4 @@ componentWillUnmount() {
                     </div>
         );
     }
-
-
 }

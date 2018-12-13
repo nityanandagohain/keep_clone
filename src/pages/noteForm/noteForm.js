@@ -14,7 +14,7 @@ export default class NoteForm extends Component {
     addNote(e) {
         e.preventDefault();
         //Passing the title and data to the function in home.js
-        this.props.addNote(this.state.newNoteTitle, this.state.newNoteData);
+        this.props.addNote( this.state.newNoteTitle, this.state.newNoteData);
 
         //Clearing the data form the inputs
         this.setState({

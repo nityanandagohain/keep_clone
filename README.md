@@ -1,6 +1,11 @@
 # KEEP-CLONE
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/keep-clone/Lobby)
 
+
+### Demo
+![kcdemo](https://user-images.githubusercontent.com/43542003/49939384-b6ff4400-ff02-11e8-8e2b-a4b3cda01c61.gif)
+
+
 ### Steps to run
 
 #### Configuring Firebase

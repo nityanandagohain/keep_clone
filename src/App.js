@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import fire from './config/fire';
 import Login from './pages/login/login.js';
 import Home from './pages/home/home.js';
+import VerifyEmail from './pages/verifyEmail/verifyEmail.js';
 import './App.css';
-
 
 class App extends Component {
   constructor(props) {
@@ -29,10 +29,11 @@ class App extends Component {
     });
   }
   render() {
+    var user = fire.auth().currentUser;
     return (
       <div className="App">
         {/* If there is an user go to home else go to Login screen */}
-        {this.state.user ? (<Home uid={this.state.user.uid}/>) : (<Login />)}
+        {user ? (user.emailVerified ? (<Home uid={user.uid}/>) : (<VerifyEmail/>)) : (<Login />)}
       </div>
     );
   }

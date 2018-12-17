@@ -12,6 +12,7 @@ export default class Login extends Component {
         this.loginGoogle = this.loginGoogle.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.showLoader = this.showLoader.bind(this);
+        this.authUser = this.authUser.bind(this);
         this.state = {
             email: '',
             password: '',
@@ -46,6 +47,14 @@ export default class Login extends Component {
 
         try {
             let user = await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+            if(user.emailVerified)
+                console.log("Email Verified");
+            else
+            {
+                let res = this.authUser();
+                console.log("Email Not Verified");
+            }
+            //console.log(res);
             console.log(`Successfully Signed Up ${user}`);
         } catch (err) {
             console.log(err);
@@ -82,8 +91,16 @@ export default class Login extends Component {
         } catch (err) {
             console.log(err);
         }
+    }
 
-      
+    async authUser()
+    {
+        let user = fire.auth().currentUser;
+        await user.sendEmailVerification().then(function(){
+            console.log("Email sent");
+        }).catch(function(err){
+            console.log(err.message);
+        });
     }
 
     handleChange(e) {
@@ -103,7 +120,7 @@ componentWillUnmount() {
                 <Loader />
                 :
                     <div className="col-md-6 container box">
-                    <h1 class="form-head">KEEP CLONE</h1>
+                    <h1 className="form-head">KEEP CLONE</h1>
                         <form id="Login">
                             <div className="form-group">
                                 <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className="form-control" id="inputEmail" placeholder="Email Address" />

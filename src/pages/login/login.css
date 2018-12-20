@@ -1,20 +1,16 @@
 .card{
-  opacity: 0.80;
-  margin-left: 500px;
-  margin-right: 400px;
-  margin-top: 105px;
-  margin-bottom: 500px;
+  margin: auto;
 }
-
 
 .btn-primary {
   margin:0 5px;
 }
 .body {
   display: flex;
-  background: linear-gradient( #FF5252, #FF8A80);
+  background: linear-gradient( #FF8252, #FF8180);
   background-repeat: no-repeat;
   background-size: inherit;
+  height: 100vh;
 }
 
 .form-head {

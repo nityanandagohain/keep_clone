@@ -78,21 +78,6 @@ export default class Login extends Component {
         }
     }
 
-    async loginGoogle(e) {
-        e.preventDefault();
-        try {
-            let user = await fire.auth().signInWithPopup(provider) 
-                .then((result) => {
-                  const user = result.user;
-                  this.setState({
-                    user
-                  });
-                });
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
     async authUser()
     {
         let user = fire.auth().currentUser;

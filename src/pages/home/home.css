@@ -1,0 +1,42 @@
+header .add, .logout {
+	position: absolute;
+	top: 0;
+	color: white;
+	margin: 0;
+	font-size: 100%;
+	border-radius: 0%;
+	background: linear-gradient( #700, #600);
+	padding: 0 20px;
+	height: 100%;
+	border: 0;
+}
+header {
+	position: sticky;
+	color: white;
+	right: 0;
+	top: 0;
+	left: 0;
+	margin: 0;
+	width: 100%;
+	background: linear-gradient( #300, #200);
+	height: 50px;
+	overflow: auto;
+	z-index: 999;
+}
+header h2{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	padding: 0.7% 0 0 0;
+	font-size: 1.5em;
+	font-weight: bold;
+	letter-spacing: 0.4em;
+}
+header .logout {
+	right: 0;
+}
+
+header .add {
+	left: 0;
+}
+button:hover {
+	background: linear-gradient( #900, #700);
+}

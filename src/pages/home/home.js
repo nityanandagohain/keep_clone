@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import fire from '../../config/fire';
 import Note from '../note/note';
 import NoteForm from '../noteForm/noteForm';
-
+import './home.css';
 export default class Home extends Component {
     constructor(props) {
         super(props);
         this.uid = props.uid; 
         this.logOut = this.logOut.bind(this);
+        this.add = this.add.bind(this);
         this.addNote = this.addNote.bind(this);
         this.removeNote = this.removeNote.bind(this);
         this.state = {
             notes: [],
+            addButton: false,
         }
         this.db = fire.database().ref(this.uid).child('notes');
     }
@@ -78,10 +80,27 @@ export default class Home extends Component {
     removeNote(noteId) {
         this.db.child(noteId).remove();
     }
+
+    add(e) 
+    {
+        if(this.state.addButton === true)
+            this.setState({addButton: false});
+        else
+            this.setState({addButton: true});
+    }
     render() {
         return (
             <div>
+            <header>
+                <h2>KEEP CLONE</h2>
+                <button onClick={this.add} className="add"><span>+</span>AddNote</button>
+                <button onClick={this.logOut} type="submit" className="logout">LogOut</button>
+            </header>
+            <div className="container">
+            {this.state.addButton === true ?
                 <NoteForm addNote={this.addNote} />
+                :null }
+                
                 <div className="NotesArray">
                     <div className="Note">
                         {
@@ -94,7 +113,7 @@ export default class Home extends Component {
                         }
                     </div>
                 </div>
-                <button onClick={this.logOut} type="submit" className="btn btn-primary">LogOut</button>
+               </div>
             </div>
         );
     }

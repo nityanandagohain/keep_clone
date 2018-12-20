@@ -1,24 +1,29 @@
-
-.box {
-  background-color: #222222;
-  padding: 1.2% 0;
-  margin: 10% auto;
-  box-shadow: 0 0 3px rgba(190, 183, 183, 0.1);
-  border: double #000000 5px;
+.card{
+  opacity: 0.80;
+  margin-left: 500px;
+  margin-right: 400px;
+  margin-top: 105px;
+  margin-bottom: 500px;
 }
 
 
 .btn-primary {
   margin:0 5px;
 }
+.body {
+  display: flex;
+  background: linear-gradient( #FF5252, #FF8A80);
+  background-repeat: no-repeat;
+  background-size: inherit;
+}
 
 .form-head {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Times New Roman", Times, sans-serif;
   color: black;
   padding: 20px ;
-  background: #dedede;
+  background: #ffffff;
   margin-bottom: 3%;
-  border-radius: 20%;
+  border-radius: 00%;
 }
 
 

@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import './noteForm.css';
+import WriteByHand from '../inputMethods/WriteByHand';
+import WriteByKeyboard from '../inputMethods/WriteByKeyboard';
+import { element } from 'prop-types';
 
 export default class NoteForm extends Component {
     constructor(props) {
         super(props);
         this.addNote = this.addNote.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.changeMode = this.changeMode.bind(this);
         this.state = {
             newNoteData: "",
-            newNoteTitle: ""
+            newNoteTitle: "",
+            inputMode: "WriteByKeyboard" // Loading standard keyboard input as default.
         }
     }
     addNote(e) {
         e.preventDefault();
         //Passing the title and data to the function in home.js
         this.props.addNote( this.state.newNoteTitle, this.state.newNoteData);
-
         //Clearing the data form the inputs
         this.setState({
             newNoteData: "",
@@ -23,26 +26,28 @@ export default class NoteForm extends Component {
         })
     }
     handleChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
+        if(e.target.id === "can")           // If description is hand drawn then converting it in dataURL.
+            this.setState({newNoteData: e.target.toDataURL()});
+        else
+            this.setState({ [e.target.name]: e.target.value });
+    }
+    changeMode(e)             // Switching input methods.
+    {
+        if(this.state.inputMode === "WriteByKeyboard")
+            this.setState({inputMode: "WriteByHand", newNoteData: ""});
+        else
+            this.setState({inputMode: "WriteByKeyboard", newNoteData: ""});
     }
     render() {
         return (
-
             <form>
                 <div className="form-group">
                     <label htmlFor="exampleFormControlInput1">Title</label>
                     <input value={this.state.newNoteTitle} onChange={this.handleChange} name="newNoteTitle" className="form-control" id="exampleFormControlInput1" placeholder="title" />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="exampleFormControlTextarea1">Description</label>
-                    <textarea value={this.state.newNoteData} onChange={this.handleChange} name="newNoteData" className="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="new note ..."></textarea>
-                </div>
-                
-                <div className="form-group row">
-                    <div className="col-sm-10">
-                        <button onClick={this.addNote} type="submit" className="btn btn-primary">Add Note</button>
-                    </div>
-                </div>
+                {this.state.inputMode === "WriteByKeyboard" ?
+                <WriteByKeyboard val = {this.state.newNoteData} addNote={this.addNote} changeMode={this.changeMode} onChange={this.handleChange}/>
+                : <WriteByHand onChange = {this.handleChange} addNote={this.addNote} changeMode={this.changeMode}/>}
             </form>
         );
     }

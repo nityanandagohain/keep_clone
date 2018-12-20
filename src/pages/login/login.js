@@ -12,6 +12,7 @@ export default class Login extends Component {
         this.loginGoogle = this.loginGoogle.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.showLoader = this.showLoader.bind(this);
+        this.authUser = this.authUser.bind(this);
         this.state = {
             email: '',
             password: '',
@@ -46,6 +47,14 @@ export default class Login extends Component {
 
         try {
             let user = await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+            if(user.emailVerified)
+                console.log("Email Verified");
+            else
+            {
+                let res = this.authUser();
+                console.log("Email Not Verified");
+            }
+            //console.log(res);
             console.log(`Successfully Signed Up ${user}`);
         } catch (err) {
             console.log(err);
@@ -82,8 +91,16 @@ export default class Login extends Component {
         } catch (err) {
             console.log(err);
         }
+    }
 
-      
+    async authUser()
+    {
+        let user = fire.auth().currentUser;
+        await user.sendEmailVerification().then(function(){
+            console.log("Email sent");
+        }).catch(function(err){
+            console.log(err.message);
+        });
     }
 
     handleChange(e) {
@@ -102,20 +119,40 @@ componentWillUnmount() {
             this.state.loading ?
                 <Loader />
                 :
-                    <div className="col-md-6 container box">
-                    <h1 class="form-head">KEEP CLONE</h1>
-                        <form id="Login">
+              <div className= "body">
+              
+            
+                    <div className="card">
+                    <div className="card-body">
+                    <h1 className="card-title">KEEP CLONE</h1>
+                    <form id="Login">
+                    
+                       <form>
                             <div className="form-group">
-                                <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className="form-control" id="inputEmail" placeholder="Email Address" />
+                                <label for="exampleFormControlFile1">Email Adress</label>
+                                <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className="form-control" id="inputEmail" />
                             </div>
-                            <div className="form-group">
-                                <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" placeholder="Password" />
-                            </div>
-                            <button onClick={this.login} type="submit" className="btn btn-success " >Login</button>
-                            <button onClick={this.signup} type="submit" className="btn btn-primary">Sign Up</button>
-                            <button onClick={this.loginGoogle} type="submit" className="btn btn-danger">Sign In with Google</button>
                         </form>
+
+                       <form>
+                               <div className="form-group">
+                                <label for="exampleFormControlFile1">Password</label>
+                                <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" />
                     </div>
+                        </form>
+
+                            <button onClick={this.login} type="submit" className="btn btn-outline-success btn-block  "  >Login</button>
+                            <h1>        </h1> 
+                            <button onClick={this.signup} type="submit" className="btn btn-outline-primary btn-sm" margin-right="5px">Sign Up</button>       
+                            <h3>  </h3>
+                            <button onClick={this.loginGoogle} type="submit" className="btn btn-outline-danger btn-sm">Sign In with Google</button>
+                        </form>
+                        
+                    </div>
+                    </div>
+                    </div>
+    
+                   
         );
     }
 }

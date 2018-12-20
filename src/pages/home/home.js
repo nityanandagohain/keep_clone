@@ -20,9 +20,25 @@ export default class Home extends Component {
         //Listen to the database if any new child is added
         this.db.on('child_added', snap => {
             console.log(snap);
-            this.setState({
-                notes: this.state.notes.concat({id: snap.key, noteTitle: snap.val().noteTitle, noteData: snap.val().noteData })
-            })
+            /*Checking whether the input data is an image or plain text.
+            (Although it is possible that this function incorrectly interprets
+            the input type since it uses some initial keywords of base64 encoding
+            of the image. A plain text maybe interpreted as image, although it
+            is highly unlikely.)*/
+            if(snap.val().noteData.substring(0,21) === "data:image/png;base64")
+            {
+                var img = new Image();
+                img.src = snap.val().noteData;
+                this.setState({
+                    notes: this.state.notes.concat({id: snap.key, noteTitle: snap.val().noteTitle, noteData: img})
+                })
+            }
+            else
+            {
+                this.setState({
+                    notes: this.state.notes.concat({id: snap.key, noteTitle: snap.val().noteTitle, noteData: snap.val().noteData})
+                })
+            }
         })
 
         this.db.on('child_removed', snap => {

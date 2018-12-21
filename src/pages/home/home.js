@@ -13,7 +13,7 @@ export default class Home extends Component {
         this.removeNote = this.removeNote.bind(this);
         this.state = {
             notes: [],
-            addButton: false,
+            addButton: true,
         }
         this.db = fire.database().ref(this.uid).child('notes');
     }
@@ -93,14 +93,16 @@ export default class Home extends Component {
             <div>
             <header>
                 <h2>KEEP CLONE</h2>
-                <button onClick={this.add} className="add"><span>+</span>AddNote</button>
+                <button onClick={this.add} className="add"><span>+</span>AddNew</button>
                 <button onClick={this.logOut} type="submit" className="logout">LogOut</button>
             </header>
-            <div className="container">
+            <div className="contain">
+            <div className="card cd">
             {this.state.addButton === true ?
                 <NoteForm addNote={this.addNote} />
                 :null }
-                
+                </div>
+                </div>
                 <div className="NotesArray">
                     <div className="Note">
                         {
@@ -112,7 +114,6 @@ export default class Home extends Component {
                             })
                         }
                     </div>
-                </div>
                </div>
             </div>
         );

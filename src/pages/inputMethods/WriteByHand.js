@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import keyboardWrite from '../inputMethods/keyboardWrite.png';
+import './Write.css';
 
 export default class WriteByHand extends Component
 {
@@ -101,55 +102,23 @@ export default class WriteByHand extends Component
 
     render()
     {
-        var styles = {
-            styleCanvas: {
-                position: "relative",
-                left: "41%",
-                border: "1px solid black",
-                display: "block",
-                textAlign: "center"
-            },
-            styleChooseColor: {
-                position: "absolute",
-                top: "30%",
-                left: "62%",
-            },
-            styleColorInput: {
-                position: "absolute",
-                top: "35%",
-                left: "62%",
-            },
-            styleEraser: {
-                position: "absolute",
-                top: "20%",
-                left: "62%",
-            },
-            styleEraserIcon: {
-                position: "absolute",
-                top: "25%",
-                left: "62%",
-                width: "15px",
-                height: "15px",
-                background: "white",
-                border: "2px solid grey"
-            }
-        };
-        var mystyle = {position:"absolute", top: "55%", left: "-40%", marginLeft: "95%"};
-        return (<div className="form-group">
+        return (<div className="form-group fcontrol">
+             <a href="#" className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={keyboardWrite} alt="Write By Hand"/></a>
             <label htmlFor="exampleFormControlTextarea1">Description</label>
-            <canvas id="can" ref = {this.canvas} style={styles.styleCanvas} width="250%" name="newNoteData" onMouseUp={this.props.onChange} onMouseOut={this.props.onChange}>
+            <canvas id="can" ref = {this.canvas} className="canvas" width="250%" name="newNoteData" onMouseUp={this.props.onChange} onMouseOut={this.props.onChange}>
             Your browser doesn't support canvas.
             </canvas>
-            <div style={styles.styleChooseColor}>Choose Color</div>
-            <input type="color" style={styles.styleColorInput} onChange={this.color}/>
-            <div style={styles.styleEraser}>Eraser</div>
-            <div style={styles.styleEraserIcon} id="white" onClick={this.color}></div>
-            <button style={mystyle} onClick={this.props.changeMode}><img width="40" height="40" title="Write By Hand" src={keyboardWrite} alt="Write By Hand"/></button>
-            <div className="form-group row">
-                <div className="col-sm-10">
-                    <button onClick={this.addNote} type="submit" className="btn btn-primary">Add Note</button>
-                </div>
+            <div className="elements">
+            <div className="color"> 
+            <div className="ChooseColor">Choose Color</div>
+            <input type="color" className="ColorInput" onChange={this.color}/>
             </div>
+            <div className="eraser"> 
+            <div className="Eraser">Eraser</div>
+            <div className="EraserIcon" id="white" onClick={this.color}></div>
+            </div>
+            </div>
+            <button onClick={this.addNote} type="submit" className="btn btn-block ">Add Note</button>
         </div>);
     }
 }

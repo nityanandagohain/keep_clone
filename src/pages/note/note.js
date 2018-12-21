@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './note.css';
 
 export default class Note extends Component {
     constructor(props) {
@@ -23,11 +24,11 @@ export default class Note extends Component {
         //alert(this.noteData.src);
         return (
             <div className="card" style={{width: 18 + 'rem'}}>
+                <button onClick={()=> this.handleRemoveNote(this.noteId)} type="submit" className="cross">&times;</button>
                 <div className="card-body">
                     <h5 className="card-title">{this.noteTitle}</h5>
                     <hr></hr>
                     <div className="card-text" ref={this.cardText}> </div>
-                    <button onClick={()=> this.handleRemoveNote(this.noteId)} type="submit" className="btn btn-primary">&times;</button>
                 </div>
             </div> 
         );

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import WriteByHand from '../inputMethods/WriteByHand';
 import WriteByKeyboard from '../inputMethods/WriteByKeyboard';
 import { element } from 'prop-types';
-
+import './noteForm.css';
 export default class NoteForm extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +15,7 @@ export default class NoteForm extends Component {
             inputMode: "WriteByKeyboard" // Loading standard keyboard input as default.
         }
     }
+    
     addNote(e) {
         e.preventDefault();
         //Passing the title and data to the function in home.js
@@ -41,9 +42,9 @@ export default class NoteForm extends Component {
     render() {
         return (
             <form>
-                <div className="form-group">
+                <div className="form-group fcontrol">
                     <label htmlFor="exampleFormControlInput1">Title</label>
-                    <input value={this.state.newNoteTitle} onChange={this.handleChange} name="newNoteTitle" className="form-control" id="exampleFormControlInput1" placeholder="title" />
+                    <input value={this.state.newNoteTitle} onChange={this.handleChange} name="newNoteTitle" className="form-control" id="exampleFormControlInput1" placeholder="title" required="required"/>
                 </div>
                 {this.state.inputMode === "WriteByKeyboard" ?
                 <WriteByKeyboard val = {this.state.newNoteData} addNote={this.addNote} changeMode={this.changeMode} onChange={this.handleChange}/>

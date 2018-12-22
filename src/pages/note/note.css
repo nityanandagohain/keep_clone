@@ -1,0 +1,18 @@
+.cross {
+	opacity: 0.2;
+	color: black;
+	font-size: 1em;
+	margin: 0;
+	padding:0 5px;
+	border: 0;
+	float: left;
+	width: 10%;
+	border-bottom: solid black 1px;
+	border-right: solid black 1px;
+}
+
+.cross:hover {
+	background: red;
+	opacity: 1;
+	color: white;
+}

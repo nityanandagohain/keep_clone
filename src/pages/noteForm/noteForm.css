@@ -1,4 +1,4 @@
-#myCanvas {
-	border: 2px solid black;
-	color: blue;
+.fcontrol {
+	max-width: 90%;
+	margin:0 5%;
 }

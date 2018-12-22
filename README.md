@@ -3,7 +3,7 @@
 
 
 ### Demo
-![kcdemo](https://user-images.githubusercontent.com/43542003/49939384-b6ff4400-ff02-11e8-8e2b-a4b3cda01c61.gif)
+![kcdemo](https://user-images.githubusercontent.com/43542003/50326442-6abe9000-0510-11e9-8a24-d48232b61dc7.gif)
 
 
 ### Steps to run

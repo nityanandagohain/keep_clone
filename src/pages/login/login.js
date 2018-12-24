@@ -11,7 +11,7 @@ export default class Login extends Component {
         this.signup = this.signup.bind(this);
         this.loginGoogle = this.loginGoogle.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.showLoader = this.showLoader.bind(this);
+        this.toggleLoader = this.toggleLoader.bind(this);
         this.authUser = this.authUser.bind(this);
         this.state = {
             email: '',
@@ -20,9 +20,9 @@ export default class Login extends Component {
         }
     }
 
-    showLoader() {
+    toggleLoader() {
         this.setState({
-            loading: true
+            loading: !this.state.loading,
         });
         console.log(this.state.loading);
     }
@@ -30,12 +30,14 @@ export default class Login extends Component {
     async login(e) {
         e.preventDefault();
         //Display the loader
-        this.showLoader();
+        this.toggleLoader();
 
         try {
             let user = await fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
             console.log(`successfully Signed In ${user}`);
         } catch (err) {
+            alert(err);
+            this.toggleLoader();
             console.log(err);
         }
     }
@@ -43,7 +45,7 @@ export default class Login extends Component {
     async signup(e) {
         e.preventDefault();
         //Display the loader
-        this.showLoader();
+        this.toggleLoader();
 
         try {
             let user = await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
@@ -57,6 +59,8 @@ export default class Login extends Component {
             //console.log(res);
             console.log(`Successfully Signed Up ${user}`);
         } catch (err) {
+            this.toggleLoader();
+            alert(err);
             console.log(err);
         }
     }
@@ -74,6 +78,7 @@ export default class Login extends Component {
                   console.log(`Successfully Signed In using Google${user}`);
                 });
         } catch (err) {
+            alert(err);
             console.log(err);
         }
     }
@@ -84,6 +89,7 @@ export default class Login extends Component {
         await user.sendEmailVerification().then(function(){
             console.log("Email sent");
         }).catch(function(err){
+            alert(err);
             console.log(err.message);
         });
     }
@@ -115,14 +121,14 @@ componentWillUnmount() {
                        <form>
                             <div className="form-group">
                                 <label for="exampleFormControlFile1">Email Adress</label>
-                                <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className="form-control" id="inputEmail" />
+                                <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className="form-control" id="inputEmail" required/>
                             </div>
                         </form>
 
                        <form>
                                <div className="form-group">
                                 <label for="exampleFormControlFile1">Password</label>
-                                <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" />
+                                <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" required/>
                     </div>
                         </form>
 

@@ -28,9 +28,8 @@ export default class WriteByHand extends Component
     {
         this.props.addNote(e);
         //Resetting the canvas container.
-        let myCanvas = e.target.parentNode.parentNode;
-        for(let i = 0; i < 6; i++)
-           myCanvas = myCanvas.previousSibling;
+        let myCanvas = e.target;
+        myCanvas = myCanvas.previousSibling.previousSibling;
         this.state.ctx.clearRect(0,0,myCanvas.width,myCanvas.height);
     }
     // Function to change the color of pencil
@@ -44,15 +43,25 @@ export default class WriteByHand extends Component
     // Function to find the current co-ordinates of mouse and depending on the event taking appropriate action.
     findxy(res, e) 
     {
+        let offLeft = 0, offTop = 0, el = this.canvas.current;
+        while(el)
+        {
+            offLeft += el.offsetLeft;
+            offTop += el.offsetTop;
+            el = el.offsetParent;
+        }
+        let scaleWidth = this.canvas.current.clientWidth, scaleHeight = this.canvas.current.clientHeight;
+        let actualWidth = this.canvas.current.width, actualHeight = this.canvas.current.height;
         if (res === 'down') {
             this.setState({prevX: this.state.currX,
                 prevY: this.state.currY, 
-                currX: e.clientX - this.canvas.current.offsetLeft,
-                currY: e.clientY - this.canvas.current.offsetTop,
+                currX: (e.clientX - offLeft + document.documentElement.scrollLeft)*actualWidth/scaleWidth, //Scaling the co-ordinates 
+                currY: (e.clientY - offTop + document.documentElement.scrollTop)*actualHeight/scaleHeight,  // of mouse pointer.
                 flag: true
             });
-            this.state.ctx.beginPath();
+            this.state.ctx.beginPath(); 
             this.state.ctx.strokeStyle = this.state.x;
+            this.state.ctx.lineWidth = this.state.y-1;
             this.state.ctx.rect(this.state.currX, this.state.currY, this.state.y-1, this.state.y-1);
             this.state.ctx.stroke();
         }
@@ -63,8 +72,8 @@ export default class WriteByHand extends Component
             if (this.state.flag) {
                 this.setState({prevX: this.state.currX, 
                     prevY: this.state.currY, 
-                    currX: e.clientX - this.canvas.current.offsetLeft,
-                    currY: e.clientY - this.canvas.current.offsetTop
+                    currX: (e.clientX - offLeft + document.documentElement.scrollLeft)*actualWidth/scaleWidth,
+                    currY: (e.clientY - offTop + document.documentElement.scrollTop)*actualHeight/scaleHeight,
                 });
                 this.draw();
             }
@@ -74,6 +83,8 @@ export default class WriteByHand extends Component
     componentDidMount() 
     {
         this.state.ctx = this.canvas.current.getContext("2d");
+        this.canvas.current.width = 250;
+        this.canvas.current.height = 150;
         var newObj = this;
         this.canvas.current.addEventListener("mousemove", function (e) {
             newObj.findxy('move', e);
@@ -88,7 +99,6 @@ export default class WriteByHand extends Component
             newObj.findxy('out', e);
         }, false);
     }
-
     // Function to actually draw the characters on the canvas container.
     draw() {
         this.state.ctx.beginPath();
@@ -105,13 +115,13 @@ export default class WriteByHand extends Component
         return (<div className="form-group fcontrol">
              <a href="#" className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={keyboardWrite} alt="Write By Hand"/></a>
             <label htmlFor="exampleFormControlTextarea1">Description</label>
-            <canvas id="can" ref = {this.canvas} className="canvas" width="250%" name="newNoteData" onMouseUp={this.props.onChange} onMouseOut={this.props.onChange}>
+            <canvas id="can" ref = {this.canvas} className="canvas" name="newNoteData" onMouseUp={this.props.onChange} onMouseOut={this.props.onChange}>
             Your browser doesn't support canvas.
             </canvas>
             <div className="elements">
             <div className="color"> 
             <div className="ChooseColor">Choose Color</div>
-            <input type="color" className="ColorInput" onChange={this.color}/>
+            <input type="color" className="ColorInput" onChange={this.color} onClick={this.color}/>
             </div>
             <div className="eraser"> 
             <div className="Eraser">Eraser</div>

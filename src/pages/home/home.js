@@ -13,7 +13,7 @@ export default class Home extends Component {
         this.removeNote = this.removeNote.bind(this);
         this.state = {
             notes: [],
-            addButton: true,
+            addButton: false,
         }
         this.db = fire.database().ref(this.uid).child('notes');
     }

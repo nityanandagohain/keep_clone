@@ -16,3 +16,30 @@
 	opacity: 1;
 	color: white;
 }
+
+.notes {
+	background: linear-gradient( #100, #000);
+	margin-top:1%;
+	color: white;
+}
+.cdt {
+	padding: 5%;
+	border: 1px solid black;
+	background: rgba(255,255,255,0.2);
+}
+.cdb {
+	background: linear-gradient( #000, #900, #400, #000);
+}
+.cdte {
+	background: rgba(255,255,255,0.9);
+	text-align: justify;
+	color: black;
+	padding: 5%;
+	margin: 0;
+	border: 3px solid black;
+}
+.hr {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}

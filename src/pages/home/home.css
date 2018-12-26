@@ -52,7 +52,7 @@ header .add {
 }
 }
 .cd {
-	background: linear-gradient( #000, #100);
+	background: linear-gradient( #000, #500, #000);
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color: white;
 }

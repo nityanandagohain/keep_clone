@@ -44,7 +44,7 @@ export default class NoteForm extends Component {
             <form>
                 <div className="form-group fcontrol">
                     <label htmlFor="exampleFormControlInput1">Title</label>
-                    <input value={this.state.newNoteTitle} onChange={this.handleChange} name="newNoteTitle" className="form-control" id="exampleFormControlInput1" placeholder="title" required="required"/>
+                    <input value={this.state.newNoteTitle} onChange={this.handleChange} name="newNoteTitle" className="form-control" id="exampleFormControlInput1" placeholder="title"/>
                 </div>
                 {this.state.inputMode === "WriteByKeyboard" ?
                 <WriteByKeyboard val = {this.state.newNoteData} addNote={this.addNote} changeMode={this.changeMode} onChange={this.handleChange}/>

@@ -3,6 +3,16 @@
 	text-align: center;
 }
 
+.clear {
+	float: right;
+	top: 0;
+	background: grey;
+	color: white;
+	width:16%;
+}
+.clear:hover {
+	color: black;
+}
 .canvas {
 	margin: 0 auto;
 	width: 100%;
@@ -54,7 +64,6 @@
 .eraser {
 	float: right;
 }
-
 
 .noteb {
 	background: white;

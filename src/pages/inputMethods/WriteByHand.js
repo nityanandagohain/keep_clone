@@ -10,6 +10,7 @@ export default class WriteByHand extends Component
         super(props);
         this.canvas = React.createRef();
         this.color = this.color.bind(this);
+        this.clearcanvas1 = this.clearcanvas1.bind(this);
         this.draw = this.draw.bind(this);
         this.findxy = this.findxy.bind(this);
         this.addNote = this.addNote.bind(this);
@@ -79,6 +80,12 @@ export default class WriteByHand extends Component
             }
         }
     }
+    clearcanvas1()
+    {
+        var canvas = document.getElementById('can'),
+            ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
     // Initializing the canvas to draw on it.
     componentDidMount() 
     {
@@ -114,6 +121,7 @@ export default class WriteByHand extends Component
     {
         return (<div className="form-group fcontrol">
              <a href="#" className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={keyboardWrite} alt="Write By Hand"/></a>
+             <a href="#" onClick={this.clearcanvas1} className="btn clear btm-sm">Reset</a>
             <label htmlFor="exampleFormControlTextarea1">Description</label>
             <canvas id="can" ref = {this.canvas} className="canvas" name="newNoteData" onMouseUp={this.props.onChange} onMouseOut={this.props.onChange}>
             Your browser doesn't support canvas.

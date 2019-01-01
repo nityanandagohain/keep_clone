@@ -16,7 +16,9 @@
 	opacity: 1;
 	color: white;
 }
-
+.li {
+	list-style: none;
+}
 .notes {
 	background: linear-gradient( #100, #000);
 	margin-top:1%;

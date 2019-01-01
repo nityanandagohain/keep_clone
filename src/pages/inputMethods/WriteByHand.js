@@ -4,7 +4,6 @@ import './Write.css';
 
 export default class WriteByHand extends Component
 {
-
     constructor(props)
     {
         super(props);

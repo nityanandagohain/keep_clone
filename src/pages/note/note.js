@@ -5,6 +5,7 @@ export default class Note extends Component {
     constructor(props) {
         super(props); 
         this.noteTitle = props.noteTitle;
+        this.noteList = props.noteList;
         this.noteData = props.noteData;
         this.noteId = props.noteId;
         this.cardText = React.createRef();
@@ -29,6 +30,14 @@ export default class Note extends Component {
                     <h5 className="card-title cdt">{this.noteTitle}</h5>
                     <hr className="hr"></hr>
                     <div className="card-text cdte" ref={this.cardText}> </div>
+                    {this.props.noteList === undefined ? null
+                        :
+                        <div className="card-text cdte">
+                            <ul>
+                            {this.props.noteList.map((val)=><li className="li"><input type="checkbox"></input>{val}</li>)} 
+                            </ul>
+                        </div>
+                    }
                 </div>
             </div> 
         );

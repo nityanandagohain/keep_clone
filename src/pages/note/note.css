@@ -16,7 +16,9 @@
 	opacity: 1;
 	color: white;
 }
-
+.li {
+	list-style: none;
+}
 .notes {
 	background: linear-gradient( #100, #000);
 	margin-top:1%;
@@ -29,6 +31,7 @@
 }
 .cdb {
 	background: linear-gradient( #000, #900, #400, #000);
+	margin: 0;
 }
 .cdte {
 	background: rgba(255,255,255,0.9);

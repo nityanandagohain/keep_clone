@@ -10,18 +10,19 @@ export default class NoteForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.changeMode = this.changeMode.bind(this);
         this.state = {
+            noteList: [],
             newNoteData: "",
             newNoteTitle: "",
             inputMode: "WriteByKeyboard" // Loading standard keyboard input as default.
         }
     }
-    
     addNote(e) {
         e.preventDefault();
         //Passing the title and data to the function in home.js
-        this.props.addNote( this.state.newNoteTitle, this.state.newNoteData);
+        this.props.addNote( this.state.newNoteTitle, this.state.newNoteData, this.state.noteList);
         //Clearing the data form the inputs
         this.setState({
+            noteList: [],
             newNoteData: "",
             newNoteTitle: ""
         })
@@ -47,7 +48,7 @@ export default class NoteForm extends Component {
                     <input value={this.state.newNoteTitle} onChange={this.handleChange} name="newNoteTitle" className="form-control" id="exampleFormControlInput1" placeholder="title"/>
                 </div>
                 {this.state.inputMode === "WriteByKeyboard" ?
-                <WriteByKeyboard val = {this.state.newNoteData} addNote={this.addNote} changeMode={this.changeMode} onChange={this.handleChange}/>
+                <WriteByKeyboard noteList={this.state.noteList} val={this.state.newNoteData} addNote={this.addNote} changeMode={this.changeMode} onChange={this.handleChange}/>
                 : <WriteByHand onChange = {this.handleChange} addNote={this.addNote} changeMode={this.changeMode}/>}
             </form>
         );

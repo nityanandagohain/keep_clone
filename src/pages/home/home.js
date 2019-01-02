@@ -17,7 +17,6 @@ export default class Home extends Component {
         }
         this.db = fire.database().ref(this.uid).child('notes');
     }
-
     componentWillMount() {
         //Listen to the database if any new child is added
         this.db.on('child_added', snap => {
@@ -32,17 +31,16 @@ export default class Home extends Component {
                 var img = new Image();
                 img.src = snap.val().noteData;
                 this.setState({
-                    notes: this.state.notes.concat({id: snap.key, noteTitle: snap.val().noteTitle, noteData: img})
+                    notes: this.state.notes.concat({id: snap.key, noteTitle: snap.val().noteTitle, noteData: img, noteList: undefined})
                 })
             }
             else
             {
                 this.setState({
-                    notes: this.state.notes.concat({id: snap.key, noteTitle: snap.val().noteTitle, noteData: snap.val().noteData})
+                    notes: this.state.notes.concat({id: snap.key, noteTitle: snap.val().noteTitle, noteData: snap.val().noteData, noteList: snap.val().noteList})
                 })
             }
         })
-
         this.db.on('child_removed', snap => {
             let prevNotes = this.state.notes;
             for (let i = 0; i < prevNotes.length; i++) {
@@ -56,7 +54,6 @@ export default class Home extends Component {
             })
         })
     }
-
     async logOut(e) {
         e.preventDefault();
         try {
@@ -71,16 +68,13 @@ export default class Home extends Component {
             console.log(err);
         }
     }
-
-    addNote(title,data) {
+    addNote(title,data, list) {
         //Push the new note to the realtime database
-        this.db.push().set({noteTitle: title, noteData: data });
+        this.db.push().set({noteTitle: title, noteData: data, noteList: list });
     }
-
     removeNote(noteId) {
         this.db.child(noteId).remove();
     }
-
     add(e) 
     {
         if(this.state.addButton === true)
@@ -109,7 +103,7 @@ export default class Home extends Component {
                             this.state.notes.map((note) => {
                                 return (
 
-                                    <Note key={note.id} noteTitle={note.noteTitle} noteData={note.noteData} noteId={note.id} removeNote={this.removeNote} />
+                                    <Note key={note.id} noteList={note.noteList} noteTitle={note.noteTitle} noteData={note.noteData} noteId={note.id} removeNote={this.removeNote} />
                                 );
                             })
                         }

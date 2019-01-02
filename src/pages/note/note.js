@@ -9,6 +9,8 @@ export default class Note extends Component {
         this.noteData = props.noteData;
         this.noteId = props.noteId;
         this.cardText = React.createRef();
+        this.cardTitle = React.createRef();
+        this.cardList = React.createRef();
         this.handleRemoveNote = this.handleRemoveNote.bind(this);
     }
     handleRemoveNote(id){
@@ -16,10 +18,19 @@ export default class Note extends Component {
     }
     componentDidMount()
     {
+        this.cardTitle.current.innerHTML = this.noteTitle;
         if(this.noteData.src)
             this.cardText.current.appendChild(this.noteData);
-        else
-            this.cardText.current.appendChild(document.createTextNode(this.noteData));
+        else if(this.noteData)
+            this.cardText.current.innerHTML = this.noteData;
+        if(this.props.noteList.length)
+        {
+            this.props.noteList.forEach((val)=>{
+                let el = document.createElement("div");
+                el.innerHTML = `<li className="li"><input type="checkbox"></input>${val}</li>`;
+                this.cardList.current.appendChild(el);
+            })
+        }
     }
     render() {
         //alert(this.noteData.src);
@@ -27,16 +38,15 @@ export default class Note extends Component {
             <div className="card notes" style={{width: 20 + 'rem',display:"inline-block",margin:"1%"}}>
                 <button onClick={()=> this.handleRemoveNote(this.noteId)} type="submit" className="cross">&times;</button>
                 <div className="card-body cdb">
-                    <h5 className="card-title cdt">{this.noteTitle}</h5>
+                    <h5 className="card-title cdt" ref={this.cardTitle}>{this.noteTitle}</h5>
                     <hr className="hr"></hr>
-                    <div className="card-text cdte" ref={this.cardText}> </div>
-                    {this.props.noteList === undefined ? null
-                        :
+                    {this.noteData ? <div className="card-text cdte" ref={this.cardText}></div> : null}
+                    {this.props.noteList.length
+                        ?
                         <div className="card-text cdte">
-                            <ul>
-                            {this.props.noteList.map((val)=><li className="li"><input type="checkbox"></input>{val}</li>)} 
+                            <ul ref = {this.cardList}>
                             </ul>
-                        </div>
+                        </div> :    null
                     }
                 </div>
             </div> 

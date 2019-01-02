@@ -45,7 +45,7 @@ export default class WriteByKeyboard extends Component
                 <textarea onChange={this.props.onChange} value={this.props.val} name="newNoteData" className="form-control des" id="exampleFormControlTextarea1" rows="7" placeholder="new note ..."></textarea>
             :   
             <div>
-                <div class="form-group des">
+                <div className="form-group des">
                     <input 
                         onChange={ (e)=>this.changeUserInput(e.target.value)} 
                         type="text" 

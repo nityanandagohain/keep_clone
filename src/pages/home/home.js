@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import {markdown} from 'markdown';
 import fire from '../../config/fire';
 import Note from '../note/note';
 import NoteForm from '../noteForm/noteForm';
 import './home.css';
+
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -30,14 +32,26 @@ export default class Home extends Component {
             {
                 var img = new Image();
                 img.src = snap.val().noteData;
+                let myNoteTitle = markdown.toHTML(snap.val().noteTitle)
                 this.setState({
-                    notes: this.state.notes.concat({id: snap.key, noteTitle: snap.val().noteTitle, noteData: img, noteList: undefined})
+                    notes: this.state.notes.concat({id: snap.key, noteTitle: myNoteTitle, noteData: img, noteList: []})
                 })
             }
             else
             {
+                let myNoteData = markdown.toHTML(snap.val().noteData);
+                let myNoteTitle = markdown.toHTML(snap.val().noteTitle), myNoteList = [];
+                if(snap.val().noteList)
+                {
+                    let listLen = snap.val().noteList.length;
+                    for(let i = 0; i < listLen; i++)
+                    {
+                        myNoteList.push(markdown.toHTML(snap.val().noteList[i]));
+                        console.log(myNoteList[i]);
+                    }
+                }
                 this.setState({
-                    notes: this.state.notes.concat({id: snap.key, noteTitle: snap.val().noteTitle, noteData: snap.val().noteData, noteList: snap.val().noteList})
+                    notes: this.state.notes.concat({id: snap.key, noteTitle: myNoteTitle, noteData: myNoteData, noteList: myNoteList})
                 })
             }
         })

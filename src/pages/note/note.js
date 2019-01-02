@@ -16,26 +16,36 @@ export default class Note extends Component {
     }
     componentDidMount()
     {
-        if(this.noteData.src)
+        if(this.props.noteList === undefined){
+            if(this.noteData.src)
             this.cardText.current.appendChild(this.noteData);
         else
             this.cardText.current.appendChild(document.createTextNode(this.noteData));
+        }
     }
     render() {
         //alert(this.noteData.src);
         return (
             <div className="card notes" style={{width: 20 + 'rem',display:"inline-block",margin:"1%"}}>
-                <button onClick={()=> this.handleRemoveNote(this.noteId)} type="submit" className="cross">&times;</button>
+                <button onClick={()=> this.handleRemoveNote(this.noteId)} type="submit" className="cross"><h5>&times;</h5></button>
                 <div className="card-body cdb">
+                {
+                    this.noteTitle === "" ? null
+                    :
                     <h5 className="card-title cdt">{this.noteTitle}</h5>
+                }
+                    
                     <hr className="hr"></hr>
-                    <div className="card-text cdte" ref={this.cardText}> </div>
-                    {this.props.noteList === undefined ? null
+                    {this.props.noteList === undefined ? 
+                        <div className="card-text cdte" ref={this.cardText} required> </div>
                         :
-                        <div className="card-text cdte">
-                            <ul>
-                            {this.props.noteList.map((val)=><li className="li"><input type="checkbox"></input>{val}</li>)} 
-                            </ul>
+                        <div className="card-text cdli">
+                            {this.props.noteList.map((val)=>
+                            <p className="li">
+                                <input type="checkbox"></input>
+                                {val}
+                            </p>
+                            )}
                         </div>
                     }
                 </div>
@@ -43,3 +53,5 @@ export default class Note extends Component {
         );
     }
 }
+
+                        

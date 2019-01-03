@@ -14,39 +14,45 @@
 	color: white;
 }
 .cdli {
-	background: rgb(255,255,255);
 	text-align: justify;
-	color: black;
 	margin: 0;
-	border: 2px solid black;
 }
-.li {
+.cdli > p {
 	width: 100%;
 	background: rgb(255,255,255);
 	text-align: justify;
 	color: black;
 	border: 0.1px solid #aaa;
-	padding: 2.8% 3% 3.8% 2%;
+	padding: 1.5% 3% 0% 2%;
 	margin: 0;
 	font-size: 12.5px;
 	overflow: hidden;
+	display: block;
 }
 input[type=checkbox] {
 	transform: scale(1.7);
 	float: left;
-	margin: 2.8% 4% 3% 3%;
+	margin: 2.3% 4% 3% 3%;
 	border: 0.1px solid #aaa;
   }
+.empty{
+	padding: 5% 0;
+	margin-top: 4%;
+	color: rgba(255,255,255,0.3);
+	font-size: 200%;
+	background: rgba(255, 255, 255, 0.3);
+}
 .notes {
 	background: linear-gradient( #100, #000);
 	margin-top:1%;
 	color: white;
 }
 .cdt {
-	padding: 5%;
-	border: 1px solid black;
+	padding: 0;
+	padding-top: 3%;
+	border: 1px solid white;
 	background: rgba(255,255,255,0.2);
-	margin-top: 5%;
+	margin-top: 4%;
 }
 .cdb {
 	background: linear-gradient( #000, #900, #400, #000);

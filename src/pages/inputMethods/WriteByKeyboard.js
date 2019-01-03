@@ -17,9 +17,9 @@ export default class WriteByKeyboard extends Component
     addListB(e) 
     {
         if(this.state.list === true)
-            this.setState({list: false});
+            this.setState({list: false,});
         else
-            this.setState({list: true});
+            this.setState({list: true,});
     }
     changeUserInput(input){
         this.setState({
@@ -39,28 +39,34 @@ export default class WriteByKeyboard extends Component
         return ( 
             <div className="form-group fcontrol">
             <a href="#" className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={handWrite} alt="Write By Hand"/></a>
-            <a href="#" onClick={this.addListB} className="btn clear">List</a>
+            {this.state.list === false ? 
+                <a href="#" onClick={this.addListB} className="btn clear">List</a>  
+            :
+                <a href="#" onClick={this.addListB} className="btn clear">Text</a>
+            }
             <label htmlFor="exampleFormControlTextarea1">Description</label>
             {this.state.list === false ? 
-                <textarea onChange={this.props.onChange} value={this.props.val} name="newNoteData" className="form-control des" id="exampleFormControlTextarea1" rows="7" placeholder="new note ..."></textarea>
+                <textarea onChange={this.props.onChange} value={this.props.val} name="newNoteData" className="form-control des" id="exampleFormControlTextarea1" rows="7" placeholder="new note..."></textarea>
             :   
-            <div>
-                <div className="form-group des">
-                    <input 
-                        onChange={ (e)=>this.changeUserInput(e.target.value)} 
-                        type="text" 
-                        value={this.state.userinput} 
-                        name="noteList" 
-                        className="form-control" 
-                        id="exampleFormControlTextarea1" 
-                        placeholder="new note ..."
-                    />
-                    <a href="#" onClick={()=>this.addList(this.state.userinput)} className="btn clear btn-danger">Add</a>
-                    <ul>
-                       {this.props.noteList.map((val)=><li>{val}</li>)} 
-                    </ul>
+                <div class="form-group listf">
+                    <div className="listd">
+                    <a href="#" onClick={()=>this.addList(this.state.userinput)} className="addl">+</a>
+                        <input 
+                            onChange={ (e)=>this.changeUserInput(e.target.value)} 
+                            type="text" 
+                            value={this.state.userinput} 
+                            name="noteList" 
+                            className="forml" 
+                            id="exampleFormControlTextarea1" 
+                            placeholder="new note..."
+                        />
+                    </div>
+                    <div className="card-title">
+                       {this.props.noteList.map((val)=>
+                       <li className="linote"><span className="hh">&rarr;</span> {val}</li>
+                       )} 
+                    </div>
                 </div>
-            </div>
             }
             <button onClick={this.props.addNote} type="submit" className="btn btn-block">Add Note</button>
         </div>);

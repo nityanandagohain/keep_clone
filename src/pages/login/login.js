@@ -82,7 +82,6 @@ export default class Login extends Component {
             console.log(err);
         }
     }
-
     async authUser()
     {
         let user = fire.auth().currentUser;
@@ -131,7 +130,6 @@ componentWillUnmount() {
                                 <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" required/>
                     </div>
                         </form>
-
                             <button onClick={this.login} type="submit" className="btn btn-outline-success btn-block  "  >Login</button>
                             <h1>        </h1> 
                             <button onClick={this.signup} type="submit" className="btn btn-outline-primary btn-sm" margin-right="5px">Sign Up</button>       

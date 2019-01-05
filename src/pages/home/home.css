@@ -6,31 +6,13 @@ header .add, .logout {
 	font-size: 100%;
 	border-radius: 0%;
 	background: linear-gradient( #700, #600);
-	padding: 0.5% 2% 1% 2%;
+	padding: 5px 2% 10px 2%;
 	height: 100%;
 	border: 0;
 }
-.delete {
-	position: sticky;
-	float: right;
-	top: 0;
-	right:0;
-}
-header {
-	position: sticky;
-	color: white;
-	right: 0;
-	top: 0;
-	left: 0;
-	margin: 0;
-	width: 100%;
-	background: linear-gradient( #300, #200);
-	overflow: auto;
-	z-index: 999;
-}
 header h2{
 	font-family:"Comic Sans MS", cursive, sans-serif;
-	padding: 0.5% 0 0 0;
+	padding: 10px 0 0 0;
 	font-size: 1em;
 	font-weight: bold;
 	letter-spacing: 0.4em;
@@ -38,7 +20,6 @@ header h2{
 header .logout {
 	right: 0;
 }
-
 header .add {
 	left: 0;
 }
@@ -46,6 +27,46 @@ header .add {
 	background: linear-gradient( #900, #700);
 }
 
+.delete {
+	position: sticky;
+	float: right;
+	top: 0;
+	right:0;
+	padding: 4px 1% 8px 1%;
+	color: white;
+	background: linear-gradient( #700, #600);
+	border: 0;
+}
+.delete:hover {
+	background: red;
+}
+header {
+	position: absolute;
+	color: white;
+	right: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: linear-gradient( #000, #200);
+	z-index: 999;
+	overflow: hidden;
+	height: 40px;
+}
+.bodyapp{
+	overflow: scroll;
+	height: 100vh;
+	background: linear-gradient( rgba(200,176,0,0.05), rgba(200,176,0,0.05));;
+}
+footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	width:100%;
+	background: linear-gradient( #200, #000);
+	overflow: auto;
+	z-index: 999;
+}
 .contain {
 	width: 70%;
 	margin: 0 auto;
@@ -57,8 +78,28 @@ header .add {
 	margin: 0 30%;
 }
 }
+
+@media all and (min-width: 1920px) {
+	.contain {
+	  width: 25%;
+	  margin: 0 37.5%;
+  }
+  }
+  
+@media all and (min-width: 3000px) {
+	.contain {
+	  width: 16%;
+	  margin: 0 42%;
+  }
+  }
 .cd {
-	background: linear-gradient( #000, #500, #000);
+	background: linear-gradient( #000,#300,#500, #000);
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color: white;
+	padding-top: 45px;
+	
+}
+.NotesArray {
+	padding: 10px 0;
+	margin: 20px 0;
 }

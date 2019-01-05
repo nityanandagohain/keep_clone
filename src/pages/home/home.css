@@ -10,6 +10,9 @@ header .add, .logout {
 	height: 100%;
 	border: 0;
 }
+.search-input {
+	display: inline;
+}
 header h2{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	padding: 10px 0 0 0;
@@ -26,7 +29,6 @@ header .add {
 .add:hover, .logout:hover {
 	background: linear-gradient( #900, #700);
 }
-
 .delete {
 	position: sticky;
 	float: right;

@@ -3,8 +3,11 @@ import {markdown} from 'markdown';
 import fire from '../../config/fire';
 import Note from '../note/note';
 import NoteForm from '../noteForm/noteForm';
+import SearchInput, {createFilter} from 'react-search-input';
 import './home.css';
 
+
+const KEYS_TO_FILTERS = ['noteData', 'noteList', 'noteTitle'];
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -14,9 +17,11 @@ export default class Home extends Component {
         this.add = this.add.bind(this);
         this.addNote = this.addNote.bind(this);
         this.removeNote = this.removeNote.bind(this);
+        this.searchUpdated = this.searchUpdated.bind(this)
         this.state = {
             notes: [],
             addButton: false,
+            searchTerm: '',
         }
         this.db = fire.database().ref(this.uid).child('notes');
     }
@@ -113,7 +118,12 @@ export default class Home extends Component {
             alert("You pressed Cancel!");
         }
     }
+    searchUpdated (term) {
+        this.setState({searchTerm: term})
+        console.log(term);
+    }
     render() {
+        const filteredNotes = this.state.notes.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
         return (
             <div className="bodyapp">
             <header>
@@ -130,7 +140,7 @@ export default class Home extends Component {
                 :null }
                 <div className="NotesArray Note">
                     {
-                        this.state.notes.map((note) => {
+                        filteredNotes.map((note) => {
                             return (
                                 <Note key={note.id} noteList={note.noteList} noteTitle={note.noteTitle} noteData={note.noteData} noteId={note.id} removeNote={this.removeNote} />
                             );
@@ -138,7 +148,8 @@ export default class Home extends Component {
                     }
                </div>
                <footer>
-               <button onClick={this.deleteAcc} type="submit" className="delete">Delete Acc</button>
+                    <SearchInput className="search-input" onChange={this.searchUpdated} />
+                    <button onClick={this.deleteAcc} type="submit" className="delete">Delete Acc</button>
                </footer>
             </div>
         );

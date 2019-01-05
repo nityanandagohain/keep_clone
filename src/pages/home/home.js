@@ -128,8 +128,8 @@ export default class Home extends Component {
             <div className="bodyapp">
             <header>
                 <h2>KEEP CLONE</h2>
-                <button onClick={this.logOut} type="btn submit" className="logout">LogOut</button>
                 <button onClick={this.add} className="btn add"><span>+</span>AddNew</button>
+                <button onClick={this.logOut} type="btn submit" className="logout">LogOut</button>
             </header>
             {this.state.addButton === true ?
                 <div className="contain">
@@ -148,8 +148,8 @@ export default class Home extends Component {
                     }
                </div>
                <footer>
-            <SearchInput className="search-input" onChange={this.searchUpdated} />
-               <button onClick={this.deleteAcc} type="submit" className="delete">Delete Acc</button>
+                    <SearchInput className="search-input" onChange={this.searchUpdated} />
+                    <button onClick={this.deleteAcc} type="submit" className="delete">Delete Acc</button>
                </footer>
             </div>
         );

@@ -15,7 +15,8 @@
     "react-dom": "^16.5.2",
     "react-firebaseui": "^3.1.2",
     "react-google-login": "^4.0.0",
-    "react-scripts": "^2.0.5"
+    "react-scripts": "^2.0.5",
+    "react-search-input": "^0.11.3"
   },
   "scripts": {
     "start": "react-scripts start",

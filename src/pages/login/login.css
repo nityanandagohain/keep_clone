@@ -7,7 +7,7 @@
 }
 .body {
   display: flex;
-  background: linear-gradient( #FF8252, #FF8180);
+  background: linear-gradient( rgba(200,176,0,0.2), rgba(200,176,0,0.2));
   background-repeat: no-repeat;
   background-size: inherit;
   height: 100vh;

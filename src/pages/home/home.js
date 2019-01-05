@@ -115,32 +115,31 @@ export default class Home extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="bodyapp">
             <header>
                 <h2>KEEP CLONE</h2>
-                <button onClick={this.add} className="add"><span>+</span>AddNew</button>
-                <button onClick={this.logOut} type="submit" className="logout">LogOut</button>
+                <button onClick={this.add} className="btn add"><span>+</span>AddNew</button>
+                <button onClick={this.logOut} type="btn submit" className="logout">LogOut</button>
             </header>
-            <button onClick={this.deleteAcc} type="submit" className="btn btn-danger delete">Delete Acc</button>
-            <div className="contain">
-            <div className="card cd">
             {this.state.addButton === true ?
-                <NoteForm addNote={this.addNote} />
+                <div className="contain">
+                <div className="card cd">
+                    <NoteForm addNote={this.addNote} />
+                </div>
+                </div>
                 :null }
-                </div>
-                </div>
-                <div className="NotesArray">
-                    <div className="Note">
-                        {
-                            this.state.notes.map((note) => {
-                                return (
-
-                                    <Note key={note.id} noteList={note.noteList} noteTitle={note.noteTitle} noteData={note.noteData} noteId={note.id} removeNote={this.removeNote} />
-                                );
-                            })
-                        }
-                    </div>
+                <div className="NotesArray Note">
+                    {
+                        this.state.notes.map((note) => {
+                            return (
+                                <Note key={note.id} noteList={note.noteList} noteTitle={note.noteTitle} noteData={note.noteData} noteId={note.id} removeNote={this.removeNote} />
+                            );
+                        })
+                    }
                </div>
+               <footer>
+               <button onClick={this.deleteAcc} type="submit" className="delete">Delete Acc</button>
+               </footer>
             </div>
         );
     }

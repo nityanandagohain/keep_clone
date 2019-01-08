@@ -36,9 +36,10 @@ export default class Login extends Component {
             let user = await fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
             console.log(`successfully Signed In ${user}`);
         } catch (err) {
-            alert(err);
             this.toggleLoader();
             console.log(err);
+            var text = err;
+            document.getElementById("error").innerHTML = text;
         }
     }
 
@@ -60,8 +61,9 @@ export default class Login extends Component {
             console.log(`Successfully Signed Up ${user}`);
         } catch (err) {
             this.toggleLoader();
-            alert(err);
             console.log(err);
+            var text = err;
+            document.getElementById("error").innerHTML = text;
         }
     }
 
@@ -78,8 +80,9 @@ export default class Login extends Component {
                   console.log(`Successfully Signed In using Google${user}`);
                 });
         } catch (err) {
-            alert(err);
             console.log(err);
+            var text = err;
+            document.getElementById("error").innerHTML = text;
         }
     }
     async authUser()
@@ -88,8 +91,9 @@ export default class Login extends Component {
         await user.sendEmailVerification().then(function(){
             console.log("Email sent");
         }).catch(function(err){
-            alert(err);
             console.log(err.message);
+            var text = err.message;
+            document.getElementById("error").innerHTML = text;
         });
     }
 
@@ -110,13 +114,11 @@ componentWillUnmount() {
                 <Loader />
                 :
               <div className= "body">
-              
-            
                     <div className="card">
                     <div className="card-body">
                     <h1 className="card-title">KEEP CLONE</h1>
+                    <div id="error"></div>
                     <form id="Login">
-                    
                        <form>
                             <div className="form-group">
                                 <label for="exampleFormControlFile1">Email Adress</label>

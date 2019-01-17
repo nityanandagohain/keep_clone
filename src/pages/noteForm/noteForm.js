@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import WriteByHand from '../inputMethods/WriteByHand';
 import WriteByKeyboard from '../inputMethods/WriteByKeyboard';
-import { element } from 'prop-types';
+// element is defined but never used, so I commented it out.
+// import { element } from 'prop-types';
 import './noteForm.css';
 export default class NoteForm extends Component {
     constructor(props) {

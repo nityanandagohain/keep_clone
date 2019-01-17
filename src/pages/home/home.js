@@ -105,7 +105,7 @@ export default class Home extends Component {
     async deleteAcc(e) {
         e.preventDefault();
         var r = window.confirm("Are you sure you want to delete your account. All your data will be deleted permanently.");
-        if (r == true) {
+        if (r === true) {
             var user = fire.auth().currentUser;
             user.delete().then(function() {
             // User deleted.

@@ -18,7 +18,7 @@ export default class Note extends Component {
     }
     componentDidMount()
     {
-        if(this.noteTitle != "") 
+        if(this.noteTitle !== "") 
             this.cardTitle.current.innerHTML = this.noteTitle;
         if(this.props.noteList.length)
         {

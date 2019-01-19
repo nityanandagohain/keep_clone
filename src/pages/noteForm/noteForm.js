@@ -4,6 +4,7 @@ import WriteByKeyboard from '../inputMethods/WriteByKeyboard';
 // element is defined but never used, so I commented it out.
 // import { element } from 'prop-types';
 import './noteForm.css';
+
 export default class NoteForm extends Component {
     constructor(props) {
         super(props);
@@ -14,8 +15,10 @@ export default class NoteForm extends Component {
             noteList: [],
             newNoteData: "",
             newNoteTitle: "",
-            inputMode: "WriteByKeyboard" // Loading standard keyboard input as default.
+            inputMode: "WriteByKeyboard", // Loading standard keyboard input as default.
+            closeButton: false
         }
+        this.closeForm = this.closeForm.bind(this);
     }
     addNote(e) {
         e.preventDefault();
@@ -41,9 +44,17 @@ export default class NoteForm extends Component {
         else
             this.setState({inputMode: "WriteByKeyboard", newNoteData: ""});
     }
+    closeForm() {
+        this.setState(prevState => {
+            return {
+                closeButton: !prevState.closeButton
+            };
+        });
+    }
     render() {
         return (
             <form>
+                <button onClick={this.props.hideForm} type="submit" className="cross"><h4>&otimes;</h4></button>
                 <div className="form-group fcontrol">
                     <label htmlFor="exampleFormControlInput1">Title</label>
                     <input value={this.state.newNoteTitle} onChange={this.handleChange} name="newNoteTitle" className="form-control" id="exampleFormControlInput1" placeholder="title"/>

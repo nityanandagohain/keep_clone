@@ -14,7 +14,7 @@ header .add, .logout {
 	display: inline;
 }
 header h2{
-	font-family:"Comic Sans MS", cursive, sans-serif;
+	font-family: "Comic Sans MS", cursive, sans-serif;
 	padding: 10px 0 0 0;
 	font-size: 1em;
 	font-weight: bold;
@@ -49,7 +49,7 @@ header {
 	top: 0;
 	left: 0;
 	width: 100%;
-	background: linear-gradient( #000, #200);
+	background: linear-gradient( #000, #400);
 	z-index: 999;
 	overflow: hidden;
 	height: 40px;
@@ -104,4 +104,8 @@ footer {
 .NotesArray {
 	padding: 10px 0;
 	margin: 20px 0;
+}
+
+span {
+	font-size: 20px;
 }

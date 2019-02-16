@@ -52,7 +52,6 @@ header .add {
 .bodyapp{
 	overflow: scroll;
 	height: 100vh;
-	background: linear-gradient( rgba(200,176,0,0.05), rgba(200,176,0,0.05));;
 }
 
 footer {

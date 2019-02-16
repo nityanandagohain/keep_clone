@@ -1,49 +1,5 @@
-header .add, .logout {
-	position: absolute;
-	top: 0;
-	color: white;
-	margin: 0;
-	font-size: 100%;
-	border-radius: 0%;
-	background: linear-gradient( #700, #600);
-	padding: 5px 2% 10px 2%;
-	height: 100%;
-	border: 0;
-}
-.search-input {
-	display: inline;
-}
-header h2{
-	font-family: "Comic Sans MS", cursive, sans-serif;
-	padding: 10px 0 0 0;
-	font-size: 1em;
-	font-weight: bold;
-	letter-spacing: 0.4em;
-}
-header .logout {
-	right: 0;
-}
-header .add {
-	left: 0;
-}
-.add:hover, .logout:hover {
-	background: linear-gradient( #900, #700);
-}
-.delete {
-	position: sticky;
-	float: right;
-	top: 0;
-	right:0;
-	padding: 4px 1% 8px 1%;
-	color: white;
-	background: linear-gradient( #700, #600);
-	border: 0;
-}
-.delete:hover {
-	background: red;
-}
 header {
-	position: absolute;
+	position: relative;
 	color: white;
 	right: 0;
 	top: 0;
@@ -54,11 +10,51 @@ header {
 	overflow: hidden;
 	height: 40px;
 }
+
+header h2{
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: 0.4em;
+	margin: 0;
+	line-height: 40px;
+}
+
+header button {
+	position: absolute;
+	top: 0;
+	color: white;
+	background: linear-gradient( #700, #600);
+	height: 100%;
+	padding: 0 10px;
+	line-height: 40px;
+}
+
+header button span {
+	line-height:100%;
+}
+
+header .logout {
+	right: 0;
+}
+
+header .add {
+	left: 0;
+}
+
+.search-input {
+	display: inline;
+}
+
+.add:hover, .logout:hover {
+	background: linear-gradient( #900, #700);
+}
+
 .bodyapp{
 	overflow: scroll;
 	height: 100vh;
 	background: linear-gradient( rgba(200,176,0,0.05), rgba(200,176,0,0.05));;
 }
+
 footer {
 	position: fixed;
 	bottom: 0;
@@ -72,6 +68,21 @@ footer {
 .contain {
 	width: 70%;
 	margin: 0 auto;
+}
+
+.delete {
+	position: sticky;
+	float: right;
+	top: 0;
+	right:0;
+	padding: 4px 1% 8px 1%;
+	color: white;
+	background: linear-gradient( #700, #600);
+	border: 0;
+}
+
+.delete:hover {
+	background: red;
 }
 
 @media all and (min-width: 900px) {
@@ -96,10 +107,7 @@ footer {
   }
 .cd {
 	background: linear-gradient( #000,#300,#500, #000);
-	font-family:"Comic Sans MS", cursive, sans-serif;
 	color: white;
-	padding-top: 45px;
-	
 }
 .NotesArray {
 	padding: 10px 0;

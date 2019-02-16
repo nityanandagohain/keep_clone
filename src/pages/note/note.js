@@ -40,7 +40,9 @@ export default class Note extends Component {
         //alert(this.noteData.src);
         return (
             <div className="card notes" style={{width: 20 + 'rem',display:"inline-block",margin:"1%"}}>
-                <button onClick={()=> this.handleRemoveNote(this.noteId)} type="submit" className="cross"><h5>&otimes;</h5></button>
+                <div className="buttonbar">
+                <button onClick={()=> this.handleRemoveNote(this.noteId)} type="submit" className="cross">&otimes;</button>
+                </div>
                 <div className="card-body cdb">
                 {
                     this.noteTitle === "" ? <h5 className="card-title cdt" ref={this.cardTitle}>New Note</h5>

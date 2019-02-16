@@ -1,6 +1,8 @@
 .card{
   margin: auto;
   width: 350px;
+  border-radius: 5px;
+  overflow:hidden;
 }
 
 .btn-primary {

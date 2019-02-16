@@ -5,7 +5,7 @@ header {
 	top: 0;
 	left: 0;
 	width: 100%;
-	background: linear-gradient( #000, #400);
+	background: #1F262E;
 	z-index: 999;
 	overflow: hidden;
 	height: 40px;
@@ -19,13 +19,16 @@ header h2{
 	line-height: 40px;
 }
 
-header button {
+header button, footer button {
 	position: absolute;
 	top: 0;
 	color: white;
 	background: linear-gradient( #700, #600);
 	height: 100%;
 	padding: 0 10px;
+}
+
+header button {
 	line-height: 40px;
 }
 
@@ -41,17 +44,20 @@ header .add {
 	left: 0;
 }
 
-.search-input {
-	display: inline;
+footer .delete {
+	right: 0;
 }
 
-.add:hover, .logout:hover {
+header .add:hover, header .logout:hover, footer .delete:hover {
 	background: linear-gradient( #900, #700);
 }
 
-.bodyapp{
-	overflow: scroll;
-	height: 100vh;
+header, footer {
+	background-color: #1F262E;
+}
+
+.search-input {
+	display: inline;
 }
 
 footer {
@@ -60,28 +66,19 @@ footer {
 	right: 0;
 	left: 0;
 	width:100%;
-	background: linear-gradient( #200, #000);
 	overflow: auto;
 	z-index: 999;
+	padding: 5px 0;
 }
+
+.bodyapp{
+	overflow: scroll;
+	height: 100vh;
+}
+
 .contain {
 	width: 70%;
 	margin: 0 auto;
-}
-
-.delete {
-	position: sticky;
-	float: right;
-	top: 0;
-	right:0;
-	padding: 4px 1% 8px 1%;
-	color: white;
-	background: linear-gradient( #700, #600);
-	border: 0;
-}
-
-.delete:hover {
-	background: red;
 }
 
 @media all and (min-width: 900px) {

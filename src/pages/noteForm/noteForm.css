@@ -1,4 +1,32 @@
 .fcontrol {
-	max-width: 90%;
-	margin:0 5%;
+	text-align: left;
+}
+
+.fcontrol label{
+	margin-bottom: 5px;
+}
+
+.des {
+	border-radius: 0 0 5px 5px;
+}
+
+.des-options {
+	display: flex;
+	justify-content: space-between;
+}
+
+.des-options a, .des-options button {
+	background-color: #DDDDDD;
+	height: 30px;
+	display: inline-block;
+	vertical-align: top;
+	line-height: 30px;
+	padding: 0 10px;
+	border-radius: 5px 5px 0 0;
+	position: relative;
+	color: inherit;
+}
+
+.des-options a img, .des-options button img {
+	margin-top: 5px;
 }

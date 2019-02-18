@@ -38,13 +38,16 @@ export default class WriteByKeyboard extends Component
     {
         return ( 
             <div className="form-group fcontrol">
-            <a href="#" className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={handWrite} alt="Write By Hand"/></a>
-            {this.state.list === false ? 
-                <a href="#" onClick={this.addListB} className="btn clear">List</a>  
-            :
-                <a href="#" onClick={this.addListB} className="btn clear">Text</a>
-            }
+            
             <label htmlFor="exampleFormControlTextarea1">Description</label>
+            <div className="des-options">
+                <a href="#" className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={handWrite} alt="Write By Hand"/></a>
+                {this.state.list === false ? 
+                    <a href="#" onClick={this.addListB} className="btn">List</a>  
+                :
+                    <a href="#" onClick={this.addListB} className="btn">Text</a>
+                }
+            </div>
             {this.state.list === false ? 
                 <textarea onChange={this.props.onChange} value={this.props.val} name="newNoteData" className="form-control des" id="exampleFormControlTextarea1" rows="7" placeholder="new note..."></textarea>
             :   

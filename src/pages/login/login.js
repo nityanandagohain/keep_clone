@@ -101,13 +101,7 @@ export default class Login extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-componentDidMount() {
-    document.body.classList.add("background-white");
-}
 
-componentWillUnmount() {
-    document.body.classList.remove("background-white");
-}
     render() {
         return (
             this.state.loading ?
@@ -132,11 +126,14 @@ componentWillUnmount() {
                                 <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" required/>
                     </div>
                         </form>
-                            <button onClick={this.login} type="submit" className="btn btn-outline-success btn-block  "  >Login</button>
-                            <h1>        </h1> 
-                            <button onClick={this.signup} type="submit" className="btn btn-outline-primary btn-sm" margin-right="5px">Sign Up</button>       
-                            <h3>  </h3>
-                            <button onClick={this.loginGoogle} type="submit" className="btn btn-outline-danger btn-sm">Sign In with Google</button>
+                            <div className="login-buttons">
+                                <button onClick={this.login} type="submit" className="btn btn-outline-success btn-block  "  >Login</button>
+                                <h1>        </h1> 
+                                <button onClick={this.signup} type="submit" className="btn btn-outline-primary btn-sm" margin-right="5px">Sign Up</button>       
+                                <h3>  </h3>
+                                <button onClick={this.loginGoogle} type="submit" className="btn btn-outline-danger btn-sm">Sign In with Google</button>
+                            </div>
+                            
                         </form>
                         
                     </div>

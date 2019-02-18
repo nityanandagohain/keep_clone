@@ -100,11 +100,8 @@ footer {
 	  width: 16%;
 	  margin: 0 42%;
   }
-  }
-.cd {
-	background: linear-gradient( #000,#300,#500, #000);
-	color: white;
 }
+
 .NotesArray {
 	padding: 10px 0;
 	margin: 20px 0;

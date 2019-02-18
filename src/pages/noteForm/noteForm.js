@@ -54,14 +54,19 @@ export default class NoteForm extends Component {
     render() {
         return (
             <form>
-                <button onClick={this.props.hideForm} type="submit" className="cross"><h4>&otimes;</h4></button>
-                <div className="form-group fcontrol">
-                    <label htmlFor="exampleFormControlInput1">Title</label>
-                    <input value={this.state.newNoteTitle} onChange={this.handleChange} name="newNoteTitle" className="form-control" id="exampleFormControlInput1" placeholder="title"/>
+                <div className="buttonbar">
+                    <button onClick={this.props.hideForm} type="submit" className="cross"><h4>&otimes;</h4></button>
                 </div>
-                {this.state.inputMode === "WriteByKeyboard" ?
-                <WriteByKeyboard noteList={this.state.noteList} val={this.state.newNoteData} addNote={this.addNote} changeMode={this.changeMode} onChange={this.handleChange}/>
-                : <WriteByHand onChange = {this.handleChange} addNote={this.addNote} changeMode={this.changeMode}/>}
+                <div className="card-body cdb">
+                    <div className="form-group fcontrol">
+                        <label htmlFor="exampleFormControlInput1">Title</label>
+                        <input value={this.state.newNoteTitle} onChange={this.handleChange} name="newNoteTitle" className="form-control" id="exampleFormControlInput1" placeholder="title"/>
+                    </div>
+                    {this.state.inputMode === "WriteByKeyboard" ?
+                    <WriteByKeyboard noteList={this.state.noteList} val={this.state.newNoteData} addNote={this.addNote} changeMode={this.changeMode} onChange={this.handleChange}/>
+                    : <WriteByHand onChange = {this.handleChange} addNote={this.addNote} changeMode={this.changeMode}/>}
+                </div>
+               
             </form>
         );
     }

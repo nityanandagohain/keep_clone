@@ -1,5 +1,7 @@
 .buttonbar {
-	text-align: left;
+	text-align: right;
+	background-color: #1F262E;
+	border-radius: 5px 5px 0 0;
 }
 
 .buttonbar button {
@@ -8,6 +10,11 @@
 	width:25px;
 	text-align: center;
 	line-height: 25px;
+	background-color: #c4c4c4;
+}
+
+.buttonbar button:hover {
+	background-color: #919191;
 }
 
 .cdli {
@@ -35,9 +42,7 @@ input[type=checkbox] {
 .empty{
 	padding: 5% 0;
 	margin-top: 4%;
-	color: rgba(255,255,255,0.3);
 	font-size: 200%;
-	background: rgba(255, 255, 255, 0.3);
 }
 .notes {
 	margin-top:1%;
@@ -45,23 +50,20 @@ input[type=checkbox] {
 	background-color: #FFF;
 }
 .cdt {
-	padding: 0;
-	padding-top: 3%;
-	border: 1px solid white;
-	background: rgba(255,255,255,0.2);
-	margin-top: 4%;
+	font-size: 125%;
+	margin-bottom: 20px;
 }
 .cdb {
-	background: linear-gradient( #000, #500, #400, #000);
-	margin: 0;
+	color: #1F262E;
 }
+
 .cdte {
 	background: rgb(255,255,255);
 	text-align: justify;
 	color: black;
 	padding: 3% 3%;
 	margin: 0;
-	border: 2px solid black;
+	border: 2px solid #1F262E;
 	font-size: 12.5px;
 }
 .hr {

@@ -1,7 +1,4 @@
-.option {
-	float: left;
-	text-align: center;
-}
+
 .clear {
 	float: right;
 	top: 0;
@@ -60,10 +57,6 @@
 }
 .eraser {
 	float: right;
-}
-.noteb {
-	background: white;
-	border-radius: 20%;
 }
 .hh {
 	display: inline;

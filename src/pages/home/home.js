@@ -127,8 +127,8 @@ export default class Home extends Component {
             <div className="bodyapp">
             <header>
                 <h2>Keep Clone</h2>
-                <button onClick={this.hide_form} className="btn add"><span>&oplus;</span>Add New</button>
-                <button onClick={this.logOut} type="btn submit" className="logout">Logout</button>
+                <button onClick={this.hide_form} className="add"><span>&oplus;</span>Add New</button>
+                <button onClick={this.logOut} type="submit" className="logout">Logout</button>
             </header>
             {
                 this.state.showForm &&

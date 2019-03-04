@@ -1,74 +1,81 @@
-header .add, .logout {
-	position: absolute;
-	top: 0;
-	color: white;
-	margin: 0;
-	font-size: 100%;
-	border-radius: 0%;
-	background: linear-gradient( #700, #600);
-	padding: 5px 2% 10px 2%;
-	height: 100%;
-	border: 0;
-}
-.search-input {
-	display: inline;
-}
-header h2{
-	font-family: "Comic Sans MS", cursive, sans-serif;
-	padding: 10px 0 0 0;
-	font-size: 1em;
-	font-weight: bold;
-	letter-spacing: 0.4em;
-}
-header .logout {
-	right: 0;
-}
-header .add {
-	left: 0;
-}
-.add:hover, .logout:hover {
-	background: linear-gradient( #900, #700);
-}
-.delete {
-	position: sticky;
-	float: right;
-	top: 0;
-	right:0;
-	padding: 4px 1% 8px 1%;
-	color: white;
-	background: linear-gradient( #700, #600);
-	border: 0;
-}
-.delete:hover {
-	background: red;
-}
 header {
-	position: absolute;
+	position: relative;
 	color: white;
 	right: 0;
 	top: 0;
 	left: 0;
 	width: 100%;
-	background: linear-gradient( #000, #400);
+	background: #1F262E;
 	z-index: 999;
 	overflow: hidden;
 	height: 40px;
 }
-.bodyapp{
-	overflow: scroll;
-	height: 100vh;
-	background: linear-gradient( rgba(200,176,0,0.05), rgba(200,176,0,0.05));;
+
+header h2{
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: 0.4em;
+	margin: 0;
+	line-height: 40px;
 }
+
+header button, footer button {
+	position: absolute;
+	top: 0;
+	color: white;
+	background: linear-gradient( #700, #600);
+	height: 100%;
+	padding: 0 10px;
+}
+
+header button {
+	line-height: 40px;
+}
+
+header button span {
+	line-height:100%;
+}
+
+header .logout {
+	right: 0;
+}
+
+header .add {
+	left: 0;
+}
+
+footer .delete {
+	right: 0;
+}
+
+header .add:hover, header .logout:hover, footer .delete:hover {
+	background: linear-gradient( #900, #700);
+}
+
+header, footer {
+	background-color: #1F262E;
+}
+
+.search-input {
+	display: inline;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;
 	right: 0;
 	left: 0;
 	width:100%;
-	background: linear-gradient( #200, #000);
 	overflow: auto;
 	z-index: 999;
+	padding: 5px 0;
 }
+
+.bodyapp{
+	overflow: scroll;
+	height: 100vh;
+}
+
 .contain {
 	width: 70%;
 	margin: 0 auto;
@@ -93,14 +100,8 @@ footer {
 	  width: 16%;
 	  margin: 0 42%;
   }
-  }
-.cd {
-	background: linear-gradient( #000,#300,#500, #000);
-	font-family:"Comic Sans MS", cursive, sans-serif;
-	color: white;
-	padding-top: 45px;
-	
 }
+
 .NotesArray {
 	padding: 10px 0;
 	margin: 20px 0;

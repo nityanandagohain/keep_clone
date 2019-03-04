@@ -1,6 +1,8 @@
 .card{
   margin: auto;
   width: 350px;
+  border-radius: 5px;
+  overflow:hidden;
 }
 
 .btn-primary {
@@ -8,9 +10,6 @@
 }
 .body {
   display: flex;
-  background: linear-gradient( rgba(200,176,0,0.2), rgba(200,176,0,0.2));
-  background-repeat: no-repeat;
-  background-size: inherit;
   height: 100vh;
 }
 
@@ -30,4 +29,18 @@
   border: 0.5px solid #000;
 }
 
+.form-group {
+  text-align: left;
+}
 
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.login-buttons button {
+  margin-bottom: 5px;
+}
+
+.login-buttons:last-child {
+  margin-bottom: 0;
+}

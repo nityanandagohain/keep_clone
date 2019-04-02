@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {markdown} from 'markdown';
 import fire from '../../config/fire';
-import Note from '../note/note';
 import NoteForm from '../noteForm/noteForm';
 import SearchInput, {createFilter} from 'react-search-input';
 import './home.css';
@@ -149,14 +148,7 @@ export default class Home extends Component {
                 </div>
             }
             <div className="NotesArray Note">
-                {/* <Column key={column.id} column={column} notes={filteredNotes} /> */}     
-                {
-                    filteredNotes.map((note) => {
-                        return (
-                            <Note key={note.id} noteList={note.noteList} noteTitle={note.noteTitle} noteData={note.noteData} noteId={note.id} removeNote={this.removeNote} />
-                        );
-                    })
-                }
+                <Column key={column.id} column={column} notes={filteredNotes} />
             </div>
             <footer>
                 <SearchInput className="search-input" onChange={this.searchUpdated} />

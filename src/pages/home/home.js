@@ -5,6 +5,7 @@ import Note from '../note/note';
 import NoteForm from '../noteForm/noteForm';
 import SearchInput, {createFilter} from 'react-search-input';
 import './home.css';
+import Column from './column'
 
 const KEYS_TO_FILTERS = ['noteData', 'noteList', 'noteTitle'];
 export default class Home extends Component {
@@ -18,6 +19,14 @@ export default class Home extends Component {
         this.searchUpdated = this.searchUpdated.bind(this)
         this.state = {
             notes: [],
+            columns: {
+                'column-1': {
+                    id: 'column-1',
+                    title: 'Notes',
+                    noteIds: []
+                }
+            },
+            columnOrder: ['column-1'],
             searchTerm: '',
             showForm: false
         }
@@ -123,6 +132,7 @@ export default class Home extends Component {
     }
     render() {
         const filteredNotes = this.state.notes.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+        const column = this.state.columns['column-1'];
         return (
             <div className="bodyapp">
             <header>
@@ -139,6 +149,7 @@ export default class Home extends Component {
                 </div>
             }
             <div className="NotesArray Note">
+                {/* <Column key={column.id} column={column} notes={filteredNotes} /> */}     
                 {
                     filteredNotes.map((note) => {
                         return (

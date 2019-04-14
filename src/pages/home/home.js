@@ -5,6 +5,8 @@ import NoteForm from '../noteForm/noteForm';
 import SearchInput, {createFilter} from 'react-search-input';
 import './home.css';
 import Column from './column'
+import { DragDropContext } from 'react-beautiful-dnd';
+
 
 const KEYS_TO_FILTERS = ['noteData', 'noteList', 'noteTitle'];
 export default class Home extends Component {
@@ -129,6 +131,11 @@ export default class Home extends Component {
             }
         });
     }
+
+    onDragEnd = result => {
+        //reorder column
+    }
+
     render() {
         const filteredNotes = this.state.notes.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
         const column = this.state.columns['column-1'];
@@ -147,9 +154,12 @@ export default class Home extends Component {
                 </div>
                 </div>
             }
-            <div className="NotesArray Note">
-                <Column key={column.id} column={column} notes={filteredNotes} />
-            </div>
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                <div className="NotesArray Note">
+                    <Column key={column.id} column={column} notes={filteredNotes} />
+                </div>
+            </DragDropContext>
+
             <footer>
                 <SearchInput className="search-input" onChange={this.searchUpdated} />
                 <button onClick={this.deleteAcc} type="submit" className="delete">Delete Acc</button>

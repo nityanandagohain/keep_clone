@@ -5,7 +5,7 @@ import { Droppable } from 'react-beautiful-dnd';
 
 
 export default class Column extends Component {
-
+    
     render() {
         return (
             <div class="notesContainer" style={{width: 400, margin: 'auto'}}>

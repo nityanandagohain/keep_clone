@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {markdown} from 'markdown';
 import fire from '../../config/fire';
-import Note from '../note/note';
 import NoteForm from '../noteForm/noteForm';
 import SearchInput, {createFilter} from 'react-search-input';
 import './home.css';
+import Column from './column'
+import { DragDropContext } from 'react-beautiful-dnd';
+
 
 const KEYS_TO_FILTERS = ['noteData', 'noteList', 'noteTitle'];
 export default class Home extends Component {
@@ -18,6 +20,14 @@ export default class Home extends Component {
         this.searchUpdated = this.searchUpdated.bind(this)
         this.state = {
             notes: [],
+            columns: {
+                'column-1': {
+                    id: 'column-1',
+                    title: 'Notes',
+                    noteIds: []
+                }
+            },
+            columnOrder: ['column-1'],
             searchTerm: '',
             showForm: false
         }
@@ -39,7 +49,13 @@ export default class Home extends Component {
                 img.src = snap.val().noteData;
                 let myNoteTitle = markdown.toHTML(snap.val().noteTitle)
                 this.setState({
-                    notes: this.state.notes.concat({id: snap.key, noteTitle: myNoteTitle, noteData: img, noteList: []})
+                    notes: this.state.notes.concat({id: snap.key, noteTitle: myNoteTitle, noteData: img, noteList: []}),
+                    columns: {
+                        'column-1': {
+                            ...this.state.columns['column-1'],
+                            noteIds: this.state.notes.map(note=> note.id)
+                        }
+                    }
                 })
             }
             else
@@ -55,8 +71,15 @@ export default class Home extends Component {
                         console.log(myNoteList[i]);
                     }
                 }
+
                 this.setState({
-                    notes: this.state.notes.concat({id: snap.key, noteTitle: myNoteTitle, noteData: myNoteData, noteList: myNoteList})
+                    notes: this.state.notes.concat({id: snap.key, noteTitle: myNoteTitle, noteData: myNoteData, noteList: myNoteList}),
+                    columns: {
+                        'column-1': {
+                            ...this.state.columns['column-1'],
+                            noteIds: this.state.notes.map(note=> note.id)
+                        }
+                    }
                 })
             }
         })
@@ -121,8 +144,47 @@ export default class Home extends Component {
             }
         });
     }
+
+    onDragEnd = result => {
+        console.log(result)
+        const { destination, source, draggableId } = result;
+
+        if (!destination) {
+            return;
+        }
+
+        if (
+            destination.droppableId === source.droppableId &&
+            destination.index === source.index
+        ) {
+            return;
+        }
+
+        const column = this.state.columns[source.droppableId];
+        const newNoteIds = Array.from(column.noteIds);
+        newNoteIds.splice(source.index, 1);
+        newNoteIds.splice(destination.index, 0, draggableId);
+
+        const newColumn = {
+            ...column,
+            noteIds: newNoteIds,
+        };
+
+        const newState = {
+            ...this.state,
+            columns: {
+                ...this.state.columns,
+                [newColumn.id]: newColumn,
+            },
+        };
+        
+        this.setState(newState)
+    }
+
     render() {
         const filteredNotes = this.state.notes.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+        const column = this.state.columns['column-1'];
+        const notes = column.noteIds.map(noteId => filteredNotes.find((note) => note.id === noteId))
         return (
             <div className="bodyapp">
             <header>
@@ -138,15 +200,12 @@ export default class Home extends Component {
                 </div>
                 </div>
             }
-            <div className="NotesArray Note">
-                {
-                    filteredNotes.map((note) => {
-                        return (
-                            <Note key={note.id} noteList={note.noteList} noteTitle={note.noteTitle} noteData={note.noteData} noteId={note.id} removeNote={this.removeNote} />
-                        );
-                    })
-                }
-            </div>
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                <div className="NotesArray Note">
+                    <Column key={column.id} column={column} notes={notes}/>
+                </div>
+            </DragDropContext>
+
             <footer>
                 <SearchInput className="search-input" onChange={this.searchUpdated} />
                 <button onClick={this.deleteAcc} type="submit" className="delete">Delete Acc</button>

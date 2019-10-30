@@ -13,6 +13,7 @@
     "markdown": "^0.5.0",
     "popper.js": "^1.14.4",
     "react": "^16.7.0",
+    "react-beautiful-dnd": "^10.1.0",
     "react-dom": "^16.7.0",
     "react-firebaseui": "^3.1.2",
     "react-google-login": "^4.0.0",

@@ -110,3 +110,8 @@ footer {
 span {
 	font-size: 20px;
 }
+
+.notesContainer {
+	margin: 8px;
+	border: 1px solid lightgrey;
+}

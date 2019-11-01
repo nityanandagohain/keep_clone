@@ -1,23 +1,22 @@
-.card{
+.card {
   margin: auto;
   width: 350px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .btn-primary {
-  margin:0 5px;
+  margin: 0 5px;
 }
 .body {
   display: flex;
-  background: linear-gradient( rgba(200,176,0,0.2), rgba(200,176,0,0.2));
-  background-repeat: no-repeat;
-  background-size: inherit;
   height: 100vh;
 }
 
 .form-head {
   font-family: "Times New Roman", Times, sans-serif;
   color: black;
-  padding: 20px ;
+  padding: 20px;
   background: #ffffff;
   margin-bottom: 3%;
   border-radius: 00%;
@@ -30,4 +29,18 @@
   border: 0.5px solid #000;
 }
 
+.form-group {
+  text-align: left;
+}
 
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.login-buttons button {
+  margin-bottom: 5px;
+}
+
+.login-buttons:last-child {
+  margin-bottom: 0;
+}

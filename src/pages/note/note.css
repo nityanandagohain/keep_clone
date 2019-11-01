@@ -1,18 +1,22 @@
-.cross {
-	opacity: 0.2;
-	color: black;
-	margin: 0;
-	padding:1% 3% 0 3%;
-	border: 0;
-	float: left;
-	border-bottom: solid black 1px;
-	border-right: solid black 1px;
+.buttonbar {
+	text-align: right;
+	background-color: #1F262E;
+	border-radius: 5px 5px 0 0;
 }
-.cross:hover {
-	background: red;
-	opacity: 1;
-	color: white;
+
+.buttonbar button {
+	display:inline-block;
+	height:25px;
+	width:25px;
+	text-align: center;
+	line-height: 25px;
+	background-color: #c4c4c4;
 }
+
+.buttonbar button:hover {
+	background-color: #919191;
+}
+
 .cdli {
 	text-align: justify;
 	margin: 0;
@@ -38,33 +42,28 @@ input[type=checkbox] {
 .empty{
 	padding: 5% 0;
 	margin-top: 4%;
-	color: rgba(255,255,255,0.3);
 	font-size: 200%;
-	background: rgba(255, 255, 255, 0.3);
 }
 .notes {
-	background: linear-gradient( #100, #000);
 	margin-top:1%;
 	color: white;
+	background-color: #FFF;
 }
 .cdt {
-	padding: 0;
-	padding-top: 3%;
-	border: 1px solid white;
-	background: rgba(255,255,255,0.2);
-	margin-top: 4%;
+	font-size: 125%;
+	margin-bottom: 20px;
 }
 .cdb {
-	background: linear-gradient( #000, #500, #400, #000);
-	margin: 0;
+	color: #1F262E;
 }
+
 .cdte {
 	background: rgb(255,255,255);
 	text-align: justify;
 	color: black;
 	padding: 3% 3%;
 	margin: 0;
-	border: 2px solid black;
+	border: 2px solid #1F262E;
 	font-size: 12.5px;
 }
 .hr {

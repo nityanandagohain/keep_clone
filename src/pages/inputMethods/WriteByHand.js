@@ -119,9 +119,11 @@ export default class WriteByHand extends Component
     render()
     {
         return (<div className="form-group fcontrol">
-             <a href="#" className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={keyboardWrite} alt="Write By Hand"/></a>
-             <a href="#" onClick={this.clearcanvas1} className="btn clear btm-sm">Reset</a>
             <label htmlFor="exampleFormControlTextarea1">Description</label>
+            <div className="des-options">
+             <button className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={keyboardWrite} alt="Write By Hand"/></button>
+             <button onClick={this.clearcanvas1} className="btn">Reset</button>
+             </div>
             <canvas id="can" ref = {this.canvas} className="canvas" name="newNoteData" onMouseUp={this.props.onChange} onMouseOut={this.props.onChange}>
             Your browser doesn't support canvas.
             </canvas>

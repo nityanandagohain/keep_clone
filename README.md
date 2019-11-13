@@ -1,5 +1,5 @@
 # KEEP-CLONE
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/keep-clone/Lobby)
+[![Gitter](https://badges.gitter.im/KeepClone/community.svg)](https://gitter.im/KeepClone/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
 ### Demo
@@ -44,4 +44,4 @@
 
 * Please note: Dont commit your config.json file
 
-gitter Channel : https://gitter.im/keep-clone/Lobby
+gitter Channel : https://gitter.im/KeepClone/community#

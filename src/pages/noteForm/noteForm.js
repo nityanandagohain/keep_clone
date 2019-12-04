@@ -23,13 +23,21 @@ export default class NoteForm extends Component {
     addNote(e) {
         e.preventDefault();
         //Passing the title and data to the function in home.js
-        this.props.addNote( this.state.newNoteTitle, this.state.newNoteData, this.state.noteList);
-        //Clearing the data form the inputs
-        this.setState({
-            noteList: [],
-            newNoteData: "",
-            newNoteTitle: ""
-        })
+        if (!this.state.newNoteTitle) {
+            alert('Please add title');
+        } else if (!this.state.newNoteData) {
+            alert('Please fill all fields');
+        } else if (!this.state.noteList) {
+            alert('Please fill all fields');
+        } else {
+            this.props.addNote(this.state.newNoteTitle, this.state.newNoteData, this.state.noteList);
+            //Clearing the data form the inputs
+            this.setState({
+                noteList: [],
+                newNoteData: "",
+                newNoteTitle: ""
+            })
+        }
     }
     handleChange(e) {
         if(e.target.id === "can")           // If description is hand drawn then converting it in dataURL.

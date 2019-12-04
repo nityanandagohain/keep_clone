@@ -73,6 +73,7 @@ export default class Login extends Component {
         try {
             let user = await fire.auth().signInWithPopup(provider) 
                 .then((result) => {
+                    console.log(result);
                   const user = result.user;
                   this.setState({
                     user
@@ -115,14 +116,14 @@ export default class Login extends Component {
                     <form id="Login">
                        <form>
                             <div className="form-group">
-                                <label for="exampleFormControlFile1">Email Adress</label>
+                                <label htmlFor="exampleFormControlFile1">Email Adress</label>
                                 <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className="form-control" id="inputEmail" required/>
                             </div>
                         </form>
 
                        <form>
                                <div className="form-group">
-                                <label for="exampleFormControlFile1">Password</label>
+                                <label htmlFor="exampleFormControlFile1">Password</label>
                                 <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" required/>
                     </div>
                         </form>

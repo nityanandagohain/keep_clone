@@ -29,15 +29,21 @@ export default class Home extends Component {
             },
             columnOrder: ['column-1'],
             searchTerm: '',
-            showForm: false
+            showForm: false,
+            profilePicURL:''
         }
         this.db = fire.database().ref(this.uid).child('notes');
         this.hide_form = this.hide_form.bind(this);
     }
+    componentDidMount()
+    {
+        // console.log(fire.auth().currentUser.photoURL);
+        this.setState({ profilePicURL:fire.auth().currentUser.photoURL })
+    }
     componentWillMount() {
         //Listen to the database if any new child is added
         this.db.on('child_added', snap => {
-            console.log(snap);
+            // console.log(snap);
             /*Checking whether the input data is an image or plain text.
             (Although it is possible that this function incorrectly interprets
             the input type since it uses some initial keywords of base64 encoding
@@ -111,6 +117,7 @@ export default class Home extends Component {
         }
     }
     addNote(title,data, list) {
+        console.log(list);
         //Push the new note to the realtime database
         this.db.push().set({noteTitle: title, noteData: data, noteList: list });
     }
@@ -190,6 +197,7 @@ export default class Home extends Component {
             <header>
                 <h2>Keep Clone</h2>
                 <button onClick={this.hide_form} className="add"><span>&oplus;</span>Add New</button>
+                <img src={this.state.profilePicURL} width={60} height={40} id="profile-pic" />
                 <button onClick={this.logOut} type="submit" className="logout">Logout</button>
             </header>
             {
@@ -202,7 +210,7 @@ export default class Home extends Component {
             }
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <div className="NotesArray Note">
-                    <Column key={column.id} column={column} notes={notes}/>
+                    <Column key={column.id} column={column} notes={notes} uid={ this.props.uid } removeNote={this.removeNote} />
                 </div>
             </DragDropContext>
 

@@ -68,7 +68,7 @@ class EditNode extends React.Component
             <React.Fragment>
                 <Modal show={this.props.show} onHide={this.props.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
+                        <Modal.Title>Edit Your Note</Modal.Title>
                     </Modal.Header>
                         <Modal.Body>
                         <div className="form-group fcontrol">

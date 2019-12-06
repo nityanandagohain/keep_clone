@@ -9,27 +9,6 @@ export default class Column extends Component {
     removeNote=(id)=>
     {
         this.props.removeNote(id);
-        // fire.database().ref(`${this.props.uid}/notes/${id}`).remove()
-        // .then((res)=>
-        // {
-        //     console.log(res);
-        // })
-        // .catch((err)=>
-        // {
-        //     console.log(err);
-        // })
-        // console.log(fire.auth());
-        // console.log(id);
-        // fire.database().ref(this.props.uid).child('notes').remove()
-        // this.db.ref(`notes/${id}`).remove()
-        // .then((res)=>
-        // {
-        //     console.log(res);
-        // })
-        // .catch((err)=>
-        // {
-        //     console.log(err);
-        // })
     }
     render() {
         return (
@@ -44,14 +23,15 @@ export default class Column extends Component {
                         {...provided.droppableProps}
                         >
                             {this.props.notes.map((note, index) => {
-                                console.log(note);
                                 return note ?  <Note 
-                                    key={note.id} 
+                                    key={note.id}
+                                    uniqueId={ note.id }
                                     noteList={note.noteList} 
                                     noteTitle={note.noteTitle} 
                                     noteData={note.noteData} 
                                     noteId={note.id} 
-                                    removeNote={this.removeNote} 
+                                    removeNote={this.removeNote}
+                                    hideForm={this.props.hideForm}
                                     index={index} /> : null
                             })}
                             {provided.placeholder} 

@@ -30,7 +30,9 @@ export default class Home extends Component {
             columnOrder: ['column-1'],
             searchTerm: '',
             showForm: false,
-            profilePicURL:''
+            profilePicURL:'',
+            editableId:'',
+            editableIdType:''
         }
         this.db = fire.database().ref(this.uid).child('notes');
         this.hide_form = this.hide_form.bind(this);
@@ -74,7 +76,7 @@ export default class Home extends Component {
                     for(let i = 0; i < listLen; i++)
                     {
                         myNoteList.push(markdown.toHTML(snap.val().noteList[i]));
-                        console.log(myNoteList[i]);
+                        // console.log(myNoteList[i]);
                     }
                 }
 
@@ -152,6 +154,15 @@ export default class Home extends Component {
         });
     }
 
+    another_hide_form=(id, type)=>{
+        this.setState(prevState=>{
+            return{
+                showForm:!prevState.showForm,
+                editableId:id,
+                editableIdType:type
+            }
+        });
+    }
     onDragEnd = result => {
         console.log(result)
         const { destination, source, draggableId } = result;
@@ -204,13 +215,20 @@ export default class Home extends Component {
                 this.state.showForm &&
                 <div className="contain">
                 <div className="card cd">
-                    <NoteForm addNote={this.addNote} hideForm={this.hide_form} />
+                    <NoteForm addNote={this.addNote} hideForm={this.hide_form}  editableIdType={this.state.editableIdType} editableId={ this.state.editableId } />
                 </div>
                 </div>
             }
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <div className="NotesArray Note">
-                    <Column key={column.id} column={column} notes={notes} uid={ this.props.uid } removeNote={this.removeNote} />
+                    <Column 
+                    key={column.id} 
+                    column={column} 
+                    notes={notes} 
+                    uid={ this.props.uid } 
+                    removeNote={this.removeNote} 
+                    hideForm={this.another_hide_form}
+                    />
                 </div>
             </DragDropContext>
 

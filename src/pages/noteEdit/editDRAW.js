@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
+import './edit.css';
 import keyboardWrite from '../inputMethods/keyboardWrite.png';
-import './Write.css';
+import fire from '../../config/fire'
 
-export default class WriteByHand extends Component
+
+export default class WriteByHand extends React.Component
 {
     constructor(props)
     {
@@ -21,16 +23,29 @@ export default class WriteByHand extends Component
             currX: 0,
             currY: 0,
             x: "black",
-            y: 2
+            y: 2,
+            newNoteData:'',
+            noteTitle:''
         };
     }
     addNote(e)
     {
-        this.props.addNote(e);
+        console.log(this.state.newNoteData);
+        //update new imageNote in firebase
+        let updates={
+            noteData:this.state.newNoteData,
+            noteTitle:this.state.noteTitle
+        }
+        const userid=fire.auth().currentUser.uid;
+        fire.database().ref(userid+"/notes/"+this.props.imageId).update(updates);
+
         //Resetting the canvas container.
         let myCanvas = e.target;
         myCanvas = myCanvas.previousSibling.previousSibling;
         this.state.ctx.clearRect(0,0,myCanvas.width,myCanvas.height);
+
+        //console image data state
+        console.log(this.state.newNoteData);
     }
     // Function to change the color of pencil
     color(obj) {
@@ -85,9 +100,25 @@ export default class WriteByHand extends Component
             ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
+
+
+    setImageNoteData=()=>
+    {
+        //here fethcing data and updating state
+        const userid=fire.auth().currentUser.uid;
+        fire.database().ref(userid+"/notes/"+this.props.imageId).on('value',(snap)=>
+        {
+            let data=snap.val();
+            this.setState({ newNoteData:data.noteData, noteTitle:data.noteTitle })
+        })
+    }
+
     // Initializing the canvas to draw on it.
     componentDidMount() 
     {
+        //fetch imageid's all data and set in the state
+        this.setImageNoteData();
+
         this.state.ctx = this.canvas.current.getContext("2d");
         this.canvas.current.width = 250;
         this.canvas.current.height = 150;
@@ -116,15 +147,20 @@ export default class WriteByHand extends Component
         this.setState({ctx: this.state.ctx});
     }
 
+    handleChange=(e)=> {
+        //update new canvas image
+            this.setState({ newNoteData: e.target.toDataURL() });
+    }
+
     render()
     {
         return (<div className="form-group fcontrol">
             <label htmlFor="exampleFormControlTextarea1">Description</label>
             <div className="des-options">
-             <button className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={keyboardWrite} alt="Write By Hand"/></button>
+             {/* <button className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={keyboardWrite} alt="Write By Hand"/></button> */}
              <button onClick={this.clearcanvas1} className="btn">Reset</button>
              </div>
-            <canvas id="can" ref = {this.canvas} className="canvas" name="newNoteData" onMouseUp={this.props.onChange} onMouseOut={this.props.onChange}>
+            <canvas id="can" ref = {this.canvas} className="canvas" name="newNoteData" onMouseUp={ this.handleChange } onMouseOut={ this.handleChange }>
             Your browser doesn't support canvas.
             </canvas>
             <div className="elements">
@@ -137,7 +173,7 @@ export default class WriteByHand extends Component
             <div className="EraserIcon" id="white" onClick={this.color}></div>
             </div>
             </div>
-            <button onClick={this.addNote} type="submit" className="btn btn-block ">Add Note</button>
+            <button onClick={this.addNote} type="submit" className="btn btn-block">Update Note</button>
         </div>);
     }
 }

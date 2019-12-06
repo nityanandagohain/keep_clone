@@ -16,6 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     this.authListner();
+    // eslint-disable-next-line
   }
   authListner() {
     fire.auth().onAuthStateChanged((user) => {

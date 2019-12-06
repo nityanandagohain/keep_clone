@@ -8,6 +8,7 @@ import './noteForm.css';
 export default class NoteForm extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.addNote = this.addNote.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.changeMode = this.changeMode.bind(this);

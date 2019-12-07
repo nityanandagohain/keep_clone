@@ -118,26 +118,28 @@ export default class WriteByHand extends Component
 
     render()
     {
-        return (<div className="form-group fcontrol">
-            <label htmlFor="exampleFormControlTextarea1">Description</label>
-            <div className="des-options">
-             <button className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={keyboardWrite} alt="Write By Hand"/></button>
-             <button onClick={this.clearcanvas1} className="btn">Reset</button>
-             </div>
-            <canvas id="can" ref = {this.canvas} className="canvas" name="newNoteData" onMouseUp={this.props.onChange} onMouseOut={this.props.onChange}>
-            Your browser doesn't support canvas.
-            </canvas>
-            <div className="elements">
-            <div className="color"> 
-            <div className="ChooseColor">Choose Color</div>
-            <input type="color" className="ColorInput" onChange={this.color} onClick={this.color}/>
-            </div>
-            <div className="eraser"> 
-            <div className="Eraser">Eraser</div>
-            <div className="EraserIcon" id="white" onClick={this.color}></div>
-            </div>
-            </div>
-            <button onClick={this.addNote} type="submit" className="btn btn-block ">Add Note</button>
-        </div>);
+        
+            return (<div className="form-group fcontrol">
+                <label htmlFor="exampleFormControlTextarea1">Description</label>
+                <div className="des-options">
+                 <button className="option noteb" onClick={this.props.changeMode}><img width="30" height="20" title="Write By Hand" src={keyboardWrite} alt="Write By Hand"/></button>
+                 <button onClick={this.clearcanvas1} className="btn">Reset</button>
+                 </div>
+                <canvas id="can" ref = {this.canvas} className="canvas" name="newNoteData" onMouseUp={this.props.onChange} onMouseOut={this.props.onChange}>
+                Your browser doesn't support canvas.
+                </canvas>
+                <div className="elements">
+                <div className="color"> 
+                <div className="ChooseColor">Choose Color</div>
+                <input type="color" className="ColorInput" onChange={this.color} onClick={this.color}/>
+                </div>
+                <div className="eraser"> 
+                <div className="Eraser">Eraser</div>
+                <div className="EraserIcon" id="white" onClick={this.color}></div>
+                </div>
+                </div>
+                <button onClick={this.addNote} type="submit" className="btn btn-block btn1 ">Add Note</button>
+            </div>);
+        
     }
 }

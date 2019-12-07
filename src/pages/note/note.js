@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './note.css';
+// import './note.css';
 import { Draggable } from 'react-beautiful-dnd';
 import EditNode from '../noteEdit/edit';
 
@@ -74,36 +74,34 @@ export default class Note extends Component {
             <Draggable draggableId={this.props.noteId} index={this.props.index}>
                 {(provided) => (
                     <div 
-                        className="card notes" 
-                        style={{width: 20 + 'rem', margin:"auto", marginBottom: 8}} 
+                        className="card mx-auto" style={{ height : '500px !important', width : '500px !important'}} 
+                        
                         {...provided.draggableProps} 
                         {...provided.dragHandleProps} 
                         innerref={provided.innerRef} 
                         ref={provided.innerRef}
                     >
-                        <div className="buttonbar">
-                            <button onClick={()=> this.handleRemoveNote(this.noteId)} type="submit" className="cross">&otimes;</button>
+                        <div className="card-header ml-auto">
+                            <button onClick={()=> this.handleRemoveNote(this.noteId)} type="submit" className="cross"><i class="fas fa-trash-alt fa-.9x"></i></button>
                         </div>
-                        <div className="card-body cdb">
+                        <div className="card-body">
                             {
                                 this.noteTitle === "" ? <h5 className="card-title cdt" ref={this.cardTitle}>New Note</h5>
                                 :
                                 <div>
-                                    <span className="card-title cdt" ref={this.cardTitle}>{this.noteTitle}</span>
-                                    {/* edit not button */}
-                                    <button ref={ this.editBTN } className="btn btn-sm btn-warning mt-1 mb-1" onClick={this.editNOTE}>edit</button>
+                                    <span className="card-title" ref={this.cardTitle}>{this.noteTitle}</span>
                                 </div>
                             }
                             <hr className="hr"></hr>
                             {
                                 this.props.noteList.length ?
-                                    <div className="card-text cdli" ref = {this.cardList}>
+                                    <div className="card-text" ref = {this.cardList}>
                                     </div>
                                 :    
                                 <div>
                                     {
                                         this.noteData ?
-                                            <div className="card-text cdte" ref={this.cardText}></div> 
+                                            <div className="card-text mb-4" ref={this.cardText}></div> 
                                             : 
                                             null
                                     }
@@ -117,6 +115,9 @@ export default class Note extends Component {
                                     :
                                     null
                             }
+                             {/* edit not button */}
+                             <button ref={ this.editBTN } className="btn btn1 btn-sm mt-1 mb-1" onClick={this.editNOTE}>edit</button>
+                               
                         </div>
                     </div> 
                 )}

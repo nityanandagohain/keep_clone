@@ -71,7 +71,7 @@ export default class WriteByKeyboard extends Component
                     </div>
                 </div>
             }
-            <button onClick={this.props.addNote} type="submit" className="btn btn-block">Add Note</button>
+            <button onClick={this.props.addNote} type="submit" className="btn btn-block btn1">Add Note</button>
         </div>);
     }
 }

@@ -12,33 +12,56 @@ export default class Column extends Component {
     }
     render() {
         return (
-            <div className="notesContainer" style={{width: 400, margin: 'auto'}}>
-                <header>
-                    <h2>{this.props.column.title}</h2>
-                </header>
+            <div className="container">
+                
+                    
+            <div className="card"  style={{width : '60%'}}>
+            <div className="card-header">
+                <h2>{this.props.column.title}</h2>
+            </div>
+               <div className="card-body">
                 <Droppable droppableId={this.props.column.id}>
                     {(provided) => (
                         <div 
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                         >
-                            {this.props.notes.map((note, index) => {
-                                return note ?  <Note 
-                                    key={note.id}
-                                    uniqueId={ note.id }
-                                    noteList={note.noteList} 
-                                    noteTitle={note.noteTitle} 
-                                    noteData={note.noteData} 
-                                    noteId={note.id} 
-                                    removeNote={this.removeNote}
-                                    hideForm={this.props.hideForm}
-                                    index={index} /> : null
+                            
+                                <div className="row">
+                        
+                            {
+                            this.props.notes.map((note, index) => {
+                                return note ? (
+                                    <div className="col-md-8 col-sm-8" style={{margin : '0 auto'}}>
+                                                <Note 
+                                                    key={note.id}
+                                                    uniqueId={ note.id }
+                                                    noteList={note.noteList} 
+                                                    noteTitle={note.noteTitle} 
+                                                    noteData={note.noteData} 
+                                                    noteId={note.id} 
+                                                    removeNote={this.removeNote}
+                                                    hideForm={this.props.hideForm}
+                                                    index={index} /> 
+                                    </div>): null
+                                    
+                               
                             })}
-                            {provided.placeholder} 
-                        </div>
+                            </div>
+                            
+                            {provided.placeholder}   
+                         
+                            </div> 
+                            
+                        
                     )}  
-                </Droppable>
-            </div>
+                      </Droppable>
+                </div>
+                </div>
+               
+            </div> 
+           
+           
         )
     }
 }

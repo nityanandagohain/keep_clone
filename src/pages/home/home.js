@@ -30,7 +30,9 @@ export default class Home extends Component {
             columnOrder: ['column-1'],
             searchTerm: '',
             showForm: false,
-            profilePicURL:''
+            profilePicURL:'',
+            editableId:'',
+            editableIdType:''
         }
         this.db = fire.database().ref(this.uid).child('notes');
         this.hide_form = this.hide_form.bind(this);
@@ -74,7 +76,7 @@ export default class Home extends Component {
                     for(let i = 0; i < listLen; i++)
                     {
                         myNoteList.push(markdown.toHTML(snap.val().noteList[i]));
-                        console.log(myNoteList[i]);
+                        // console.log(myNoteList[i]);
                     }
                 }
 
@@ -152,6 +154,15 @@ export default class Home extends Component {
         });
     }
 
+    another_hide_form=(id, type)=>{
+        this.setState(prevState=>{
+            return{
+                showForm:!prevState.showForm,
+                editableId:id,
+                editableIdType:type
+            }
+        });
+    }
     onDragEnd = result => {
         console.log(result)
         const { destination, source, draggableId } = result;
@@ -194,29 +205,49 @@ export default class Home extends Component {
         const notes = column.noteIds.map(noteId => filteredNotes.find((note) => note.id === noteId))
         return (
             <div className="bodyapp">
-            <header>
-                <h2>Keep Clone</h2>
-                <button onClick={this.hide_form} className="add"><span>&oplus;</span>Add New</button>
-                <img src={this.state.profilePicURL} width={60} height={40} id="profile-pic" />
-                <button onClick={this.logOut} type="submit" className="logout">Logout</button>
-            </header>
+            <nav class="navbar navbar-expand-lg">
+               <a class="navbar-brand mx-auto" href="#">Keep Clone</a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarNavDropdown">
+               <ul class="navbar-nav ml-auto">
+               <img src={this.state.profilePicURL} width={60} height={40} id="profile-pic" />
+               
+               <button onClick={this.hide_form} className="btn btn-outline-light mx-2"><span><i class="fas fa-plus-circle"></i></span>Add New</button>
+                <button onClick={this.logOut} type="submit" className="btn btn-dark">Logout</button>
+ 
+                </ul>
+               </div>
+            </nav>
+            
+            
             {
                 this.state.showForm &&
-                <div className="contain">
-                <div className="card cd">
-                    <NoteForm addNote={this.addNote} hideForm={this.hide_form} />
+                <div className="container">
+                   
+                <div className="card">
+                    <NoteForm addNote={this.addNote} hideForm={this.hide_form}  editableIdType={this.state.editableIdType} editableId={ this.state.editableId } />
                 </div>
+                  
                 </div>
             }
             <DragDropContext onDragEnd={this.onDragEnd}>
-                <div className="NotesArray Note">
-                    <Column key={column.id} column={column} notes={notes} uid={ this.props.uid } removeNote={this.removeNote} />
+                <div className="">
+                    <Column 
+                    key={column.id} 
+                    column={column} 
+                    notes={notes} 
+                    uid={ this.props.uid } 
+                    removeNote={this.removeNote} 
+                    hideForm={this.another_hide_form}
+                    />
                 </div>
             </DragDropContext>
 
             <footer>
                 <SearchInput className="search-input" onChange={this.searchUpdated} />
-                <button onClick={this.deleteAcc} type="submit" className="delete">Delete Acc</button>
+                <button onClick={this.deleteAcc} type="submit" className="btn btn-primary">Delete Acc</button>
             </footer>
             </div>
         );

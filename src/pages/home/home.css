@@ -10,6 +10,7 @@
 	padding: 15px 15px;
 	transition: all 2s ease;
 	
+	
   }
   .navbar-background{
 	padding: 5px 6px;
@@ -82,3 +83,31 @@
 	  
 	  color : white;
   }
+  .btn1 :hover{
+	background-color: #1ebba3;
+  }
+
+  .modal-header{
+	background-color: #1ebba3;
+	  font-size: 40px;
+	  padding : 7px;
+	 
+  }
+  .modal-title{
+	margin: 0 30%;
+	
+  }
+
+  footer {
+	position:fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	width:100%;
+	overflow: auto;
+	z-index: 999;
+	padding: 5px 0;
+	display: inline-flex;
+	margin : 0 auto;
+	/* background-color: rgba(0, 0, 0, 0.6); */
+}

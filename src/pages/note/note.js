@@ -71,10 +71,12 @@ export default class Note extends Component {
         //alert(this.noteData.src);
         return (
             <>
-            <Draggable draggableId={this.props.noteId} index={this.props.index}>
+            <Draggable style={{ margin : '2px auto', width : '80%'}} draggableId={this.props.noteId} index={this.props.index}>
                 {(provided) => (
-                    <div 
-                        className="card mx-auto" style={{ height : '500px !important', width : '500px !important'}} 
+                    
+                        <div 
+                        className="card"
+                       
                         
                         {...provided.draggableProps} 
                         {...provided.dragHandleProps} 
@@ -120,6 +122,8 @@ export default class Note extends Component {
                                
                         </div>
                     </div> 
+                       
+                   
                 )}
             </Draggable>
             { this.state.show ? <EditNode 

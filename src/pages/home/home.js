@@ -214,7 +214,7 @@ export default class Home extends Component {
                <ul class="navbar-nav ml-auto">
                <img src={this.state.profilePicURL} width={60} height={40} id="profile-pic" />
                
-               <button onClick={this.hide_form} className="btn btn-outline-light"><span><i class="fas fa-plus-circle"></i></span>Add New</button>
+               <button onClick={this.hide_form} className="btn btn-outline-light mx-2"><span><i class="fas fa-plus-circle"></i></span>Add New</button>
                 <button onClick={this.logOut} type="submit" className="btn btn-dark">Logout</button>
  
                 </ul>
@@ -233,7 +233,7 @@ export default class Home extends Component {
                 </div>
             }
             <DragDropContext onDragEnd={this.onDragEnd}>
-                <div className="NotesArray Note">
+                <div className="">
                     <Column 
                     key={column.id} 
                     column={column} 

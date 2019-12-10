@@ -16,10 +16,16 @@ export default class WriteByKeyboard extends Component
 
     addListB(e) 
     {
-        if(this.state.list === true)
-            this.setState({list: false,});
-        else
-            this.setState({list: true,});
+        if(this.state.list === true){
+            //update state of noteFrom which data user is inserting text or list
+            this.props.setNotesType('text');
+            this.setState({list: false });
+        }
+        else{
+                        //update state of noteFrom which data user is inserting text or list
+            this.props.setNotesType('list');
+            this.setState({list: true});
+        }
     }
     changeUserInput(input){
         this.setState({

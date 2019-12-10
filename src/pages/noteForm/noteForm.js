@@ -17,18 +17,27 @@ export default class NoteForm extends Component {
             newNoteData: "",
             newNoteTitle: "",
             inputMode: "WriteByKeyboard", // Loading standard keyboard input as default.
-            closeButton: false
+            closeButton: false,
+            notesType:''
         }
         this.closeForm = this.closeForm.bind(this);
     }
+
+    //set if user typing notes in list or text
+    setNotesType=(type)=>
+    {
+        this.setState({ notesType: type})
+    }
+
     addNote(e) {
         e.preventDefault();
         //Passing the title and data to the function in home.js
+        console.log(this.state.notesType);
         if (!this.state.newNoteTitle) {
             alert('Please add title');
-        } else if (!this.state.newNoteData) {
+        } else if (this.state.newNoteData==='' && this.state.notesType==='text') {
             alert('Please fill all fields');
-        } else if (!this.state.noteList) {
+        } else if (this.state.noteList.length===0 && this.state.notesType==='list') {
             alert('Please fill all fields');
         } else {
             this.props.addNote(this.state.newNoteTitle, this.state.newNoteData, this.state.noteList);
@@ -41,6 +50,7 @@ export default class NoteForm extends Component {
         }
     }
     handleChange(e) {
+        // console.log(e.target.value);
         if(e.target.id === "can")           // If description is hand drawn then converting it in dataURL.
             this.setState({newNoteData: e.target.toDataURL()});
         else
@@ -74,7 +84,7 @@ export default class NoteForm extends Component {
                     <input value={this.state.newNoteTitle} onChange={this.handleChange} name="newNoteTitle" className="form-control" id="exampleFormControlInput1" placeholder="title"/>
                 </div>
                 {this.state.inputMode === "WriteByKeyboard" ?
-                <WriteByKeyboard noteList={this.state.noteList} val={this.state.newNoteData} addNote={this.addNote} changeMode={this.changeMode} onChange={this.handleChange}/>
+                <WriteByKeyboard setNotesType={ this.setNotesType } noteList={this.state.noteList} val={this.state.newNoteData} addNote={this.addNote} changeMode={this.changeMode} onChange={this.handleChange}/>
                 : <WriteByHand onChange = {this.handleChange} addNote={this.addNote} changeMode={this.changeMode}/>}
              </form>
             </div>

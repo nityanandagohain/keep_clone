@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       user: {},
+      provider:''
     };
   }
   itemsRef = fire.database().ref('user')
@@ -18,11 +19,22 @@ class App extends Component {
     this.authListner();
     // eslint-disable-next-line
   }
+
+  componentWillMount()
+  {
+    
+  }
+
   authListner() {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
         // if a user exist
-        this.setState({ user });
+        if(user.providerData[0].providerId==='facebook.com'){
+          this.setState({ user })
+          console.log(user);
+        }else{
+          this.setState({ user });
+        }
       } else {
         // if no user exist
         this.setState({ user: null });
@@ -34,7 +46,8 @@ class App extends Component {
     return (
       <div className="App">
         {/* If there is an user go to home else go to Login screen */}
-        {user ? (user.emailVerified ? (<Home uid={user.uid}/>) : (<VerifyEmail/>)) : (<Login />)}
+        { user ? ( user.providerData[0].providerId==='facebook.com' ? (<Home uid={user.uid}/>) : (user.emailVerified ? (<Home uid={user.uid}/>) : (<VerifyEmail/>)) ) :(<Login/>) }
+        {/* {user ? (user.emailVerified ? (<Home uid={user.uid}/>) : (<VerifyEmail/>)) : (<Login />)} */}
       </div>
     );
   }

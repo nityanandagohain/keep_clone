@@ -13,8 +13,9 @@ const EditNrmlNote=(props)=>
         fire.database().ref(userid+"/notes/"+props.textId).on('value',(snap)=>
         {
             let data=snap.val();
+            console.log(data);
             setNoteText(data.noteData);
-            setNoteTitle(data.noteTitle);
+            // setNoteTitle(data.noteTitle);
         })
     },[])
 

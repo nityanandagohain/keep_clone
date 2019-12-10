@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fire, {provider } from '../../config/fire';
+import fire, { provider, facebookProvider } from '../../config/fire';
 import './login.css'
 import Loader from '../loader/loader';
 
@@ -86,6 +86,27 @@ export default class Login extends Component {
             document.getElementById("error").innerHTML = text;
         }
     }
+
+    loginFacebook=async (e)=>{
+        e.preventDefault();
+        
+        try {
+            let user = await fire.auth().signInWithPopup(facebookProvider) 
+                .then((result) => {
+                    console.log(result);
+                  const user = result.user;
+                  this.setState({
+                    user
+                  });
+                  console.log(`Successfully Signed In using facebook${user}`);
+                });
+        } catch (err) {
+            console.log(err);
+            var text = err;
+            document.getElementById("error").innerHTML = text;
+        }
+    }
+
     async authUser()
     {
         let user = fire.auth().currentUser;
@@ -133,6 +154,7 @@ export default class Login extends Component {
                                 <button onClick={this.signup} type="submit" className="btn btn-outline-primary btn-sm" margin-right="5px">Sign Up</button>       
                                 <h3>  </h3>
                                 <button onClick={this.loginGoogle} type="submit" className="btn btn-outline-danger btn-sm">Sign In with Google</button>
+                                <button onClick={ this.loginFacebook } type="submit" className="btn btn-outline-primary btn-sm ml-2">Sign In With Facebook</button>
                             </div>
                             
                         </form>

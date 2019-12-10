@@ -117,7 +117,7 @@ export default class Note extends Component {
                                     :
                                     null
                             }
-                             {/* edit not button */}
+                             {/* edit button */}
                              <button ref={ this.editBTN } className="btn btn1 btn-sm mt-1 mb-1" onClick={this.editNOTE}>edit</button>
                                
                         </div>

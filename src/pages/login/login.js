@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import fire, { provider, facebookProvider } from '../../config/fire';
-import './login.css'
+import classes from './login.css';
 import Loader from '../loader/loader';
 
 export default class Login extends Component {
@@ -17,6 +17,10 @@ export default class Login extends Component {
             email: '',
             password: '',
             loading: false,
+            validity: {
+                validMail: true,
+                validPassword: true
+            }
         }
     }
 
@@ -120,11 +124,55 @@ export default class Login extends Component {
     }
 
     handleChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
+        e.preventDefault();
+        console.log('name is '+ e.target.name+' value is '+ e.target.value);
+        console.log("Initially ");
+        console.log(this.state);
+        if(e.target.name === 'email'){
+            var newState = {
+                ...this.state,
+                validity: {
+                    ...this.state.validity
+                }
+            };
+            newState = {
+                [e.target.name]: e.target.value,
+                validity: {
+                    validMail: this.checkValidity(e.target.value),
+                    validPassword: this.state.validity.validPassword
+                } 
+            }
+            this.setState(newState);
+            //console.log(this.state.validity);
+        }
+        if(e.target.name === 'password'){
+            var newState = {
+                ...this.state,
+                validity: {
+                    ...this.state.validity
+                }
+            };
+            newState = {
+                [e.target.name]: e.target.value,
+                validity: {
+                    validMail: this.state.validity.validMail,
+                    validPassword: this.checkValidity(e.target.value)
+                }
+            }
+            this.setState(newState);
+            //console.log(this.state.validity);
+        }
+        console.log("Finally");
+        console.log(this.state);
+    }
+
+    checkValidity(value) {
+        return value.trim() !== '';
     }
 
 
     render() {
+        //console.log(this.state);
         return (
             this.state.loading ?
                 <Loader />
@@ -138,15 +186,15 @@ export default class Login extends Component {
                        <form>
                             <div className="form-group">
                                 <label htmlFor="exampleFormControlFile1">Email Adress</label>
-                                <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className="form-control" id="inputEmail" required/>
+                                <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className={this.state.validity.validMail === true ? "form-control valid":"form-control invalid"} id="inputEmail" required/>
                             </div>
                         </form>
 
                        <form>
-                               <div className="form-group">
+                           <div className="form-group">
                                 <label htmlFor="exampleFormControlFile1">Password</label>
-                                <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className="form-control" id="inputPassword" required/>
-                    </div>
+                                <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className={this.state.validity.validPassword === true ? "form-control valid":"form-control invalid"} id="inputPassword" required/>
+                           </div>
                         </form>
                             <div className="login-buttons">
                                 <button onClick={this.login} type="submit" className="btn btn-outline-success btn-block  "  >Login</button>

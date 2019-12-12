@@ -1,10 +1,10 @@
 {
-    "apiKey": "AIzaSyBESOf4Scn7YQhNAliMrEM8ylEDyOx-4JA",
-    "authDomain": "foss-3a615.firebaseapp.com",
-    "databaseURL": "https://foss-3a615.firebaseio.com",
-    "projectId": "foss-3a615",
-    "storageBucket": "foss-3a615.appspot.com",
-    "messagingSenderId": "1014468101649",
-    "appId": "1:1014468101649:web:88e6fbf136528df93f53b0",
+    "apiKey": "AIzaSyDuXdfZ5xlLkJe9feKB_5TZdjESdjeonnQ",
+    "authDomain": "keep-clone-6fe39.firebaseapp.com",
+    "databaseURL": "https://keep-clone-6fe39.firebaseio.com",
+    "projectId": "keep-clone-6fe39",
+    "storageBucket": "keep-clone-6fe39.appspot.com",
+    "messagingSenderId": "543917129253",
+    "appId": "1:543917129253:web:b6f387332987100c2189cc",
     "measurementId": "G-CDWKKN0WS0"
 }

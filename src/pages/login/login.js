@@ -11,48 +11,81 @@ export default class Login extends Component {
         this.signup = this.signup.bind(this);
         this.loginGoogle = this.loginGoogle.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.toggleLoader = this.toggleLoader.bind(this);
+        this.showLoader = this.showLoader.bind(this);
+        this.closeLoader = this.closeLoader.bind(this);
         this.authUser = this.authUser.bind(this);
         this.state = {
             email: '',
             password: '',
             loading: false,
             validity: {
-                validMail: true,
-                validPassword: true
+                validMail: false,
+                validPassword: false,
+                touchedMail: false,
+                touchedPW: false
             }
         }
     }
 
-    toggleLoader() {
+    showLoader() {
         this.setState({
-            loading: !this.state.loading,
-        });
-        console.log(this.state.loading);
+            loading: true
+        })
+    }
+    closeLoader() {
+        this.setState({
+            loading: false
+        })
     }
 
     async login(e) {
         e.preventDefault();
-        //Display the loader
-        this.toggleLoader();
 
+        //this.toggleLoader();
+        this.showLoader()
         try {
+            //Display the loader
+
+            console.log(this.state)
+            if(this.state.validity.validMail===false || this.state.validity.validPassword===false){
+                console.log("THROWING ERROR")
+                throw "Empty fields are there"
+                return;
+            }
             let user = await fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
             console.log(`successfully Signed In ${user}`);
         } catch (err) {
-            this.toggleLoader();
+            this.closeLoader()
             console.log(err);
             var text = err;
-            document.getElementById("error").innerHTML = text;
+            var error = document.getElementById("error")
+            if(error) {
+                error.innerHTML = text;
+            }
+            if(text === "Empty fields are there")
+            {
+                this.setState({
+                    validity: {
+                        touchedMail: true,
+                        touchedPW: true
+                    }
+                });
+            }
         }
+        //this.toggleLoader();
     }
 
     async signup(e) {
         e.preventDefault();
         //Display the loader
-        this.toggleLoader();
+        this.showLoader();
 
         try {
+            if(this.state.validity.validMail === false || this.state.validity.validPassword === false){
+                console.log("Throwing error")
+                throw "Empty fields are there"
+                return;
+            }
             let user = await fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
             if(user.emailVerified)
                 console.log("Email Verified");
@@ -64,10 +97,22 @@ export default class Login extends Component {
             //console.log(res);
             console.log(`Successfully Signed Up ${user}`);
         } catch (err) {
-            this.toggleLoader();
+            this.closeLoader();
             console.log(err);
             var text = err;
-            document.getElementById("error").innerHTML = text;
+            var error = document.getElementById("error")
+            if(error) {
+                error.innerHTML = text;
+            }
+            if(text === "Empty fields are there")
+            {
+                this.setState({
+                    validity: {
+                        touchedMail: true,
+                        touchedPW: true
+                    }
+                });
+            }
         }
     }
 
@@ -125,7 +170,7 @@ export default class Login extends Component {
 
     handleChange(e) {
         e.preventDefault();
-        console.log('name is '+ e.target.name+' value is '+ e.target.value);
+        // console.log('name is '+ e.target.name+' value is '+ e.target.value);
         console.log("Initially ");
         console.log(this.state);
         if(e.target.name === 'email'){
@@ -139,7 +184,9 @@ export default class Login extends Component {
                 [e.target.name]: e.target.value,
                 validity: {
                     validMail: this.checkValidity(e.target.value),
-                    validPassword: this.state.validity.validPassword
+                    validPassword: this.state.validity.validPassword,
+                    touchedMail: true,
+                    touchedPW: this.state.validity.touchedPW
                 } 
             }
             this.setState(newState);
@@ -156,7 +203,9 @@ export default class Login extends Component {
                 [e.target.name]: e.target.value,
                 validity: {
                     validMail: this.state.validity.validMail,
-                    validPassword: this.checkValidity(e.target.value)
+                    validPassword: this.checkValidity(e.target.value),
+                    touchedMail: this.state.validity.touchedMail,
+                    touchedPW: true
                 }
             }
             this.setState(newState);
@@ -172,7 +221,7 @@ export default class Login extends Component {
 
 
     render() {
-        //console.log(this.state);
+        console.log("loading in render "+this.state.loading);
         return (
             this.state.loading ?
                 <Loader />
@@ -186,14 +235,14 @@ export default class Login extends Component {
                        <form>
                             <div className="form-group">
                                 <label htmlFor="exampleFormControlFile1">Email Adress</label>
-                                <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className={this.state.validity.validMail === true ? "form-control valid":"form-control invalid"} id="inputEmail" required/>
+                                <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className={!this.state.validity.validMail && this.state.validity.touchedMail ? "form-control invalid":"form-control valid"} id="inputEmail" required/>
                             </div>
                         </form>
 
                        <form>
                            <div className="form-group">
                                 <label htmlFor="exampleFormControlFile1">Password</label>
-                                <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className={this.state.validity.validPassword === true ? "form-control valid":"form-control invalid"} id="inputPassword" required/>
+                                <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className={!this.state.validity.validPassword && this.state.validity.touchedPW ? "form-control invalid":"form-control valid"} id="inputPassword" required/>
                            </div>
                         </form>
                             <div className="login-buttons">

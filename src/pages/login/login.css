@@ -44,3 +44,12 @@
 .login-buttons:last-child {
   margin-bottom: 0;
 }
+
+.invalid {
+  border: 1px solid red;
+  background-color: #FDA49A;
+}
+
+.valid {
+  border: 1px solid #ccc;
+}

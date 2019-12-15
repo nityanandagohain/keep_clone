@@ -1,10 +1,10 @@
 {
-    "apiKey": "",
-    "authDomain": "",
-    "databaseURL": "",
-    "projectId": "",
-    "storageBucket": "",
-    "messagingSenderId": "",
-    "appId": "",
-    "measurementId": ""
-}
+    "apiKey": "AIzaSyDgG9n0J3oLRaMNgPzMZ5FvjLu3bqE68WI",
+    "authDomain": "keep-klone.firebaseapp.com",
+    "databaseURL": "https://keep-klone.firebaseio.com",
+    "projectId": "keep-klone",
+    "storageBucket": "keep-klone.appspot.com",
+    "messagingSenderId": "1020281284980",
+    "appId": "1:1020281284980:web:d89fd3730967a4c6b6a421",
+    "measurementId": "G-H8Q8NDH1JN"
+  }

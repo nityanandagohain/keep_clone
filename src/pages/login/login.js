@@ -16,7 +16,7 @@ export default class Login extends Component {
         this.authUser = this.authUser.bind(this);
         this.changeColor = this.changeColor.bind(this);
         this.state = {
-            dark:"false",
+            dark:"true",
             email: '',
             password: '',
             loading: false,

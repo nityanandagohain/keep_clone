@@ -20,9 +20,7 @@ export default class Column extends Component {
        console.log(this.props.column.title)
         return (
           <Fragment>
-                
-  
-            <div className="card"  style={{width : '40%', marginTop : '15px'}}>
+              <div className="card"  style={{width : '40%', marginTop : '15px'}}>
                 <div className="card-header">
                     <button type="button" className="btn1 btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                         <h2 style={{fontSize: '25px'}}>{this.props.column.title}</h2>
@@ -30,7 +28,6 @@ export default class Column extends Component {
                 </div> 
             </div>
             <body className={this.props.mode?"dark-mode-body":"light-mode-body"}>
-             
                 <Droppable droppableId={this.props.column.id}>
                     {(provided) => (
                         <div 
@@ -49,12 +46,11 @@ export default class Column extends Component {
       
       <div className="modal-body">
      <div className="row">
-                        
                         {
                         this.props.notes.map((note, index) => {
                             return note ? (
-                               
-                                <div className="col-lg-9 col-md-9 col-sm-8" style={{ margin : '2px auto'}}>
+                              <div className="col-lg-9 col-md-9 col-sm-8" style={{ margin : '2px auto'}}>
+                                    
                                             <Note 
                                                 key={note.id}
                                                 uniqueId={ note.id }
@@ -68,8 +64,7 @@ export default class Column extends Component {
                                 </div>): null
                         })}
                          </div>
-      </div>
-      
+      </div>     
         
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -78,15 +73,11 @@ export default class Column extends Component {
     </div>
     
   </div>
-</div>
-                            
+</div>                            
                         
-                            {provided.placeholder}   
-                         
-                            </div> 
-                            
-                        
-                    )}  
+                            {provided.placeholder}
+                               </div> 
+                            )}  
                       </Droppable>
                       </body>     
   </Fragment>

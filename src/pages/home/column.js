@@ -1,20 +1,27 @@
 import React, { Component, Fragment } from 'react';
 import Note from '../note/note';
 import './home.css';
+import './column.css'
 import { Droppable } from 'react-beautiful-dnd';
-import fire from '../../config/fire';
+
 
 export default class Column extends Component {
-
+    constructor(props){
+      super(props);
+      this.state={
+        dark:false
+      }
+    }
     removeNote=(id)=>
     {
         this.props.removeNote(id);
     }
     render() {
+       console.log(this.props.column.title)
         return (
           <Fragment>
                 
-                    
+  
             <div className="card"  style={{width : '40%', marginTop : '15px'}}>
                 <div className="card-header">
                     <button type="button" className="btn1 btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -22,8 +29,8 @@ export default class Column extends Component {
                     </button>
                 </div> 
             </div>
-          
-              
+            <body className={this.props.mode?"dark-mode-body":"light-mode-body"}>
+             
                 <Droppable droppableId={this.props.column.id}>
                     {(provided) => (
                         <div 
@@ -39,6 +46,7 @@ export default class Column extends Component {
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div className="modal-body">
      <div className="row">
                         
@@ -61,11 +69,14 @@ export default class Column extends Component {
                         })}
                          </div>
       </div>
+      
+        
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
        
       </div>
     </div>
+    
   </div>
 </div>
                             
@@ -77,7 +88,7 @@ export default class Column extends Component {
                         
                     )}  
                       </Droppable>
-              
+                      </body>     
   </Fragment>
         )
     }

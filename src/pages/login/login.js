@@ -224,15 +224,16 @@ export default class Login extends Component {
 
     checkValidity(value) {
         return value.trim() !== '';
-    }
+    }   
 
 
     render() {
+        var theme = this.state.dark ? "dark":"light"
         console.log("loading in render "+this.state.loading);
         return (
             
                 this.state.loading ?
-                    <Loader />
+                    <Loader theme={this.state.dark}/>
                     :
                 
                 <div className={this.state.dark ? "dark-mode" : "light-mode"}>
@@ -287,17 +288,14 @@ export default class Login extends Component {
                                     </div>
                                     <button onClick={this.loginGoogle} type="submit" className="btn btn-outline-danger btn-sm">Sign In with Google</button>
                                     <button onClick={ this.loginFacebook } type="submit" className="btn btn-outline-primary btn-sm ml-2">Sign In With Facebook</button>
-                                </div>
-                                
-                            </form>
-                            
-                        </main>
-    
+                                </div>                                
+                            </form>                            
+                        </main>    
                         </div>   
                         </div>
                         </div>
-                        </div>                   
-                    // for test
+                        </div>               
+                    
                    
         );
     }

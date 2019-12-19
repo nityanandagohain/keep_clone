@@ -3,6 +3,8 @@
   width: 350px;
   border-radius: 5px;
   overflow: hidden;
+  position: relative;
+  height: 100%;
 }
 
 .btn-primary {
@@ -21,13 +23,7 @@
   margin-bottom: 3%;
   border-radius: 00%;
 }
-#error {
-  padding: 0 1.5%;
-  margin-bottom: 12px;
-  background: rgba(255, 0, 0, 0.1);
-  color: #900;
-  border: 0.5px solid #000;
-}
+
 
 .form-group {
   text-align: left;
@@ -52,4 +48,101 @@
 
 .valid {
   border: 1px solid #ccc;
+}
+
+  
+.dark-mode {
+  background-color: #01010e;
+  color: rgb(28, 3, 75);
+}
+
+.light-mode {
+  background-color: #fff;
+  color: rgb(51, 51, 51);
+  transition: background-color 0.25s ease-out;
+}
+
+.light-mode nav {
+  transition: background-color 0.25s ease-out;
+}
+.toggle {
+  position: relative; 
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"].checkbox {
+  width: 48px;
+  height: 10px;
+  background: #555;
+  position: relative;
+  border-radius: 5px;    
+  appearance: none;
+  cursor:progress;
+  vertical-align: 2px;
+  outline: none;
+}
+
+input[type="checkbox"].checkbox:checked + label {
+  left: 30px;
+}
+
+input[type="checkbox"].checkbox:focus-visible {
+  outline: solid 2px white;
+}
+
+input[type="checkbox"].checkbox + label {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: absolute;
+  left: 2px;
+  background: #fff;
+  opacity: 0.9;
+  background-color: cyan;
+}
+
+.toggle-container {
+  display: flex;
+  margin: 0 auto;
+}
+
+.toggle-container > span {
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  margin-top: 4px;
+  margin-right: 2px;
+}
+
+.toggle-container > span:last-child {
+  margin-top: 5px;
+}
+.dark-mode nav {
+  background-color: #051322;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  background-color: steelblue;
+  padding: 20px;
+  position: relative;
+}
+main {
+  display:table;
+  padding: 0.5em;
+  margin: 0 auto;
+  max-width: 600px;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  height: 190dp;
+  position:center;
+  height: 100%;
+  vertical-align:center;
 }

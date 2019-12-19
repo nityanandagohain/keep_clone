@@ -19,6 +19,7 @@ export default class Home extends Component {
         this.removeNote = this.removeNote.bind(this);
         this.searchUpdated = this.searchUpdated.bind(this)
         this.state = {
+            dark:false,
             notes: [],
             columns: {
                 'column-1': {
@@ -41,6 +42,12 @@ export default class Home extends Component {
     {
         // console.log(fire.auth().currentUser.photoURL);
         this.setState({ profilePicURL:fire.auth().currentUser.photoURL })
+    }
+    changeColor()
+    {
+        this.setState({
+            dark:!this.state.dark
+        })
     }
     componentWillMount() {
         //Listen to the database if any new child is added
@@ -204,6 +211,24 @@ export default class Home extends Component {
         const column = this.state.columns['column-1'];
         const notes = column.noteIds.map(noteId => filteredNotes.find((note) => note.id === noteId))
         return (
+            <div className={this.state.dark ? "dark-mode" : "light-mode"}>
+            <nav>
+                <div className="toggle-container">
+                <span style={{ color: this.state.dark ? "grey" : "yellow" }}>☀︎</span>
+                <span className="toggle">
+                    <input
+                    checked={this.state.dark}
+                    onChange={() => this.changeColor()}
+                    id="checkbox"
+                    className="checkbox"
+                    type="checkbox"
+                    />
+                    <label htmlFor="checkbox" />
+                </span>
+                <span style={{ color: this.state.dark ? "slateblue" : "grey" }}>☾</span>
+                
+                </div>
+            </nav>
             <div className="bodyapp">
             <nav class="navbar navbar-expand-lg">
                <a class="navbar-brand mx-auto" href="#">Keep Clone</a>
@@ -219,21 +244,20 @@ export default class Home extends Component {
  
                 </ul>
                </div>
-            </nav>
-            
+            </nav>         
             
             {
                 this.state.showForm &&
-                <div className="container">
-                   
+                <div className="container">                   
                 <div className="card">
                     <NoteForm addNote={this.addNote} hideForm={this.hide_form}  editableIdType={this.state.editableIdType} editableId={ this.state.editableId } />
-                </div>
-                  
+                </div>                  
                 </div>
             }
+            
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <div className="">
+                
                     <Column 
                     key={column.id} 
                     column={column} 
@@ -241,14 +265,19 @@ export default class Home extends Component {
                     uid={ this.props.uid } 
                     removeNote={this.removeNote} 
                     hideForm={this.another_hide_form}
+                    mode = {this.state.dark}
                     />
                 </div>
             </DragDropContext>
-
-            <footer>
-                <SearchInput className="search-input" onChange={this.searchUpdated} />
-                <button onClick={this.deleteAcc} type="submit" className="btn btn-primary">Delete Acc</button>
+          
+            <div className = {this.state.dark?"dark-mode-footer":"light-mode-footer"}>
+            <footer className = {this.state.dark ? "dark-mode" : "light-mode"}>                              
+                    <SearchInput className="search-input" onChange={this.searchUpdated} />
+                    <button onClick={this.deleteAcc} type="submit" className="btn btn-primary">Delete Acc</button>              
+                
             </footer>
+            </div>
+            </div>
             </div>
         );
     }

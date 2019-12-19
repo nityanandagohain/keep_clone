@@ -98,16 +98,46 @@
 	
   }
 
-  footer {
+ .light-mode-footer {
+	 
 	position:fixed;
+	
 	bottom: 0;
-	right: 0;
+	right: 80;
 	left: 0;
 	width:100%;
 	overflow: auto;
 	z-index: 999;
-	padding: 5px 0;
+	padding: 10px 0;
 	display: inline-flex;
 	margin : 0 auto;
-	/* background-color: rgba(0, 0, 0, 0.6); */
+	background-color: rgba(233, 232, 247, 0.493);
+	text-align: center;
 }
+
+.dark-mode-footer {
+	 
+	position:fixed;
+	
+	bottom: 0;
+	right: 80;
+	left: 0;
+	width:100%;
+	overflow: auto;
+	z-index: 999;
+	padding: 10px 0;
+	display: inline-flex;
+	margin : 0 auto;
+	background-color:#01010e;
+	text-align: center;
+}
+.dark-mode {
+	background-color: #01010e;
+	color: rgb(28, 3, 75);
+  }
+  
+  .light-mode {
+	background-color: #fff;
+	color: rgb(51, 51, 51);
+	transition: background-color 0.25s ease-out;
+  }

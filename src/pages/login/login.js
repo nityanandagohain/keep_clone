@@ -247,7 +247,7 @@ export default class Login extends Component {
                 this.state.loading ?
                     <Loader theme={this.state.dark}/>
                     :
-                   
+                this.state.ForgotPassword?<ForgotPassword/>:
                 <div className={this.state.dark ? "dark-mode" : "light-mode"}>
                     <Router>
                    <nav>
@@ -271,8 +271,7 @@ export default class Login extends Component {
                     <div className = "body">
                         
                         <div className={this.state.dark ? "card bg-dark text-white" : "card bg-light text-dark"}>
-                        <main>
-                        
+                        <main>                        
                         <h1 className="card-title">KEEP CLONE</h1>
                         <div id="error"></div>
                         <form id="Login">
@@ -291,10 +290,7 @@ export default class Login extends Component {
                             </form>
                                 <div className="login-buttons">
                                     <div>
-                                    <button onClick={(e)=>this.ForgotPassword(e)}  type="submit" className="btn btn-outline-primary btn-block  "  >Forgot Password?</button>
-                                    <Router>
-                                        {this.state.ForgotPassword?(<ForgotPassword></ForgotPassword>):(<Redirect to ="/"></Redirect>)}
-                                    </Router>
+                                    <button onClick={(e)=>this.ForgotPassword(e)}  type="submit" className="btn btn-outline-primary btn-block  "  >Forgot Password?</button>                                   
                                     <br></br>
                                     <button onClick={this.login} type="submit" className="btn btn-outline-success btn-block  "  >Login</button>
                                     <h1>        </h1> 
@@ -306,15 +302,14 @@ export default class Login extends Component {
                                     <button onClick={this.loginGoogle} type="submit" className="btn btn-outline-danger btn-sm">Sign In with Google</button>
                                     <button onClick={ this.loginFacebook } type="submit" className="btn btn-outline-primary btn-sm ml-2">Sign In With Facebook</button>
                                 </div>                                
-                            </form>                            
+                            </form>                                                   
                         </main>    
                         </div>   
                         </div>
                         </div>
                         </Router>
-                        </div>               
+                        </div>             
                   
-                   
-        );
+               );
     }
 }

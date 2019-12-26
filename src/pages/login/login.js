@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import fire, { provider, facebookProvider } from '../../config/fire';
+import {BrowserRouter as Router,Redirect} from "react-router-dom" 
+import ForgotPassword from "../Forgot Password/ForgotPassword"
 import classes from './login.css';
 import Loader from '../loader/loader';
 
@@ -15,7 +17,9 @@ export default class Login extends Component {
         this.closeLoader = this.closeLoader.bind(this);
         this.authUser = this.authUser.bind(this);
         this.changeColor = this.changeColor.bind(this);
+        this.ForgotPassword = this.ForgotPassword.bind(this);
         this.state = {
+            ForgotPassword:false,
             dark:"true",
             email: '',
             password: '',
@@ -27,6 +31,14 @@ export default class Login extends Component {
                 touchedPW: false
             }
         }
+    }
+
+    ForgotPassword(e)
+    {
+        e.preventDefault()
+        this.setState({ForgotPassword:!this.state.ForgotPassword},()=>console.log(this.state.ForgotPassword));
+        
+  
     }
 
     showLoader() {
@@ -231,13 +243,13 @@ export default class Login extends Component {
         var theme = this.state.dark ? "dark":"light"
         console.log("loading in render "+this.state.loading);
         return (
-            
+              
                 this.state.loading ?
                     <Loader theme={this.state.dark}/>
                     :
-                
+                this.state.ForgotPassword?<ForgotPassword/>:
                 <div className={this.state.dark ? "dark-mode" : "light-mode"}>
-                   
+                    <Router>
                    <nav>
                         <div className="toggle-container">
                             <span style={{ color: this.state.dark ? "grey" : "yellow" }}>☀︎</span>
@@ -259,26 +271,27 @@ export default class Login extends Component {
                     <div className = "body">
                         
                         <div className={this.state.dark ? "card bg-dark text-white" : "card bg-light text-dark"}>
-                        <main>
-                        
+                        <main>                        
                         <h1 className="card-title">KEEP CLONE</h1>
                         <div id="error"></div>
                         <form id="Login">
                         <form>
                                 <div className="form-group">
                                     <label htmlFor="exampleFormControlFile1">Email Adress</label>
-                                    <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className={!this.state.validity.validMail && this.state.validity.touchedMail ? "form-control invalid":"form-control valid"} id="inputEmail" required/>
+                                    <input value={this.state.email} onChange={this.handleChange} name="email" type="email" placeholder = "Email" className={!this.state.validity.validMail && this.state.validity.touchedMail ? "form-control invalid":"form-control valid"} id="inputEmail" required/>
                                 </div>
                             </form>
 
                         <form>
                             <div className="form-group">
                                     <label htmlFor="exampleFormControlFile1">Password</label>
-                                    <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className={!this.state.validity.validPassword && this.state.validity.touchedPW ? "form-control invalid":"form-control valid"} id="inputPassword" required/>
+                                    <input value={this.state.password} onChange={this.handleChange} name="password" placeholder="Password" type="password" className={!this.state.validity.validPassword && this.state.validity.touchedPW ? "form-control invalid":"form-control valid"} id="inputPassword" required/>
                             </div>
                             </form>
                                 <div className="login-buttons">
                                     <div>
+                                    <button onClick={(e)=>this.ForgotPassword(e)}  type="submit" className="btn btn-outline-primary btn-block  "  >Forgot Password?</button>                                   
+                                    <br></br>
                                     <button onClick={this.login} type="submit" className="btn btn-outline-success btn-block  "  >Login</button>
                                     <h1>        </h1> 
                                     <h1>        </h1>
@@ -289,14 +302,14 @@ export default class Login extends Component {
                                     <button onClick={this.loginGoogle} type="submit" className="btn btn-outline-danger btn-sm">Sign In with Google</button>
                                     <button onClick={ this.loginFacebook } type="submit" className="btn btn-outline-primary btn-sm ml-2">Sign In With Facebook</button>
                                 </div>                                
-                            </form>                            
+                            </form>                                                   
                         </main>    
                         </div>   
                         </div>
                         </div>
-                        </div>               
-                    
-                   
-        );
+                        </Router>
+                        </div>             
+                  
+               );
     }
 }

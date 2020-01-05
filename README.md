@@ -16,7 +16,7 @@
 
 * Click on the " </> " icon in project overview and copy the config values and add it in `src/config/config.json` in your project.
 
-* Go to authentication and click on sign-in method and enable "Email/password"
+* Go to authentication and click on sign-in method and enable "Email/password".
 
 * Go to Database and create database on Realtime Database and Enable test mode.
 
@@ -40,7 +40,7 @@
 
 ### Contributions 
 
-* Contributors are welcome and please comment on the issue before working on it.
+* Contributors are welcome and please comment on the [new-issue](https://github.com/nityanandagohain/keep_clone/issues/new/choose) before working on it.
 
 * Please note: Dont commit your config.json file
 

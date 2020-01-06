@@ -1,0 +1,12 @@
+.dark{
+    background-color: #01010e;
+    color: rgb(233, 97, 18);
+}
+.light{
+    background-color: #fff;
+    color: rgb(51, 51, 51);
+}
+.main {
+    display: flex;
+    height: 100vh;
+}

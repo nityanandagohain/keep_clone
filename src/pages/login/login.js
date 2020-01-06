@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import fire, { provider, facebookProvider } from '../../config/fire';
+import {BrowserRouter as Router,Redirect} from "react-router-dom" 
+import ForgotPassword from "../Forgot Password/ForgotPassword"
 import classes from './login.css';
 import Loader from '../loader/loader';
 
@@ -14,7 +16,11 @@ export default class Login extends Component {
         this.showLoader = this.showLoader.bind(this);
         this.closeLoader = this.closeLoader.bind(this);
         this.authUser = this.authUser.bind(this);
+        this.changeColor = this.changeColor.bind(this);
+        this.ForgotPassword = this.ForgotPassword.bind(this);
         this.state = {
+            ForgotPassword:false,
+            dark:"true",
             email: '',
             password: '',
             loading: false,
@@ -27,6 +33,14 @@ export default class Login extends Component {
         }
     }
 
+    ForgotPassword(e)
+    {
+        e.preventDefault()
+        this.setState({ForgotPassword:!this.state.ForgotPassword},()=>console.log(this.state.ForgotPassword));
+        
+  
+    }
+
     showLoader() {
         this.setState({
             loading: true
@@ -36,6 +50,11 @@ export default class Login extends Component {
         this.setState({
             loading: false
         })
+    }
+
+    changeColor()
+    {
+        this.setState({dark:!this.state.dark})
     }
 
     async login(e) {
@@ -217,50 +236,80 @@ export default class Login extends Component {
 
     checkValidity(value) {
         return value.trim() !== '';
-    }
+    }   
 
 
     render() {
+        var theme = this.state.dark ? "dark":"light"
         console.log("loading in render "+this.state.loading);
         return (
-            this.state.loading ?
-                <Loader />
-                :
-              <div className= "body">
-                    <div className="card">
-                    <div className="card-body">
-                    <h1 className="card-title">KEEP CLONE</h1>
-                    <div id="error"></div>
-                    <form id="Login">
-                       <form>
-                            <div className="form-group">
-                                <label htmlFor="exampleFormControlFile1">Email Adress</label>
-                                <input value={this.state.email} onChange={this.handleChange} name="email" type="email" className={!this.state.validity.validMail && this.state.validity.touchedMail ? "form-control invalid":"form-control valid"} id="inputEmail" required/>
-                            </div>
-                        </form>
-
-                       <form>
-                           <div className="form-group">
-                                <label htmlFor="exampleFormControlFile1">Password</label>
-                                <input value={this.state.password} onChange={this.handleChange} name="password" type="password" className={!this.state.validity.validPassword && this.state.validity.touchedPW ? "form-control invalid":"form-control valid"} id="inputPassword" required/>
-                           </div>
-                        </form>
-                            <div className="login-buttons">
-                                <button onClick={this.login} type="submit" className="btn btn-outline-success btn-block  "  >Login</button>
-                                <h1>        </h1> 
-                                <button onClick={this.signup} type="submit" className="btn btn-outline-primary btn-sm" margin-right="5px">Sign Up</button>       
-                                <h3>  </h3>
-                                <button onClick={this.loginGoogle} type="submit" className="btn btn-outline-danger btn-sm">Sign In with Google</button>
-                                <button onClick={ this.loginFacebook } type="submit" className="btn btn-outline-primary btn-sm ml-2">Sign In With Facebook</button>
-                            </div>
+              
+                this.state.loading ?
+                    <Loader theme={this.state.dark}/>
+                    :
+                this.state.ForgotPassword?<ForgotPassword/>:
+                <div className={this.state.dark ? "dark-mode" : "light-mode"}>
+                    <Router>
+                   <nav>
+                        <div className="toggle-container">
+                            <span style={{ color: this.state.dark ? "grey" : "yellow" }}>☀︎</span>
+                            <span className="toggle">
+                                <input
+                                checked={this.state.dark}
+                                onChange={() => this.changeColor()}
+                                id="checkbox"
+                                className="checkbox"
+                                type="checkbox"
+                                />
+                                <label htmlFor="checkbox" />
+                            </span>
+                            <span style={{ color: this.state.dark ? "slateblue" : "grey" }}>  ☾</span>
                             
-                        </form>
+                        </div>
+                    </nav>
+                    <div className = {this.state.dark ? "dark-mode" : "light-mode"}>
+                    <div className = "body">
                         
-                    </div>
-                    </div>
-                    </div>
-    
-                   
-        );
+                        <div className={this.state.dark ? "card bg-dark text-white" : "card bg-light text-dark"}>
+                        <main>                        
+                        <h1 className="card-title">KEEP CLONE</h1>
+                        <div id="error"></div>
+                        <form id="Login">
+                        <form>
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlFile1">Email Adress</label>
+                                    <input value={this.state.email} onChange={this.handleChange} name="email" type="email" placeholder = "Email" className={!this.state.validity.validMail && this.state.validity.touchedMail ? "form-control invalid":"form-control valid"} id="inputEmail" required/>
+                                </div>
+                            </form>
+
+                        <form>
+                            <div className="form-group">
+                                    <label htmlFor="exampleFormControlFile1">Password</label>
+                                    <input value={this.state.password} onChange={this.handleChange} name="password" placeholder="Password" type="password" className={!this.state.validity.validPassword && this.state.validity.touchedPW ? "form-control invalid":"form-control valid"} id="inputPassword" required/>
+                            </div>
+                            </form>
+                                <div className="login-buttons">
+                                    <div>
+                                    <button onClick={(e)=>this.ForgotPassword(e)}  type="submit" className="btn btn-outline-primary btn-block  "  >Forgot Password?</button>                                   
+                                    <br></br>
+                                    <button onClick={this.login} type="submit" className="btn btn-outline-success btn-block  "  >Login</button>
+                                    <h1>        </h1> 
+                                    <h1>        </h1>
+                                    <button onClick={this.signup} type="submit" className="btn btn-outline-primary btn-sm" margin-right="5px">Sign Up</button>       
+                                    <h3>        </h3>
+                                    <h3>        </h3> 
+                                    </div>
+                                    <button onClick={this.loginGoogle} type="submit" className="btn btn-outline-danger btn-sm">Sign In with Google</button>
+                                    <button onClick={ this.loginFacebook } type="submit" className="btn btn-outline-primary btn-sm ml-2">Sign In With Facebook</button>
+                                </div>                                
+                            </form>                                                   
+                        </main>    
+                        </div>   
+                        </div>
+                        </div>
+                        </Router>
+                        </div>             
+                  
+               );
     }
 }

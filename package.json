@@ -8,7 +8,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.7",
     "bootstrap": "^4.4.1",
-    "firebase": "^7.5.0",
+    "firebase": "^10.9.0",
     "firebase-functions": "^3.3.0",
     "jquery": "^3.4.1",
     "local-storage": "^2.0.0",
